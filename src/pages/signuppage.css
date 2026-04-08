@@ -1,0 +1,507 @@
+/* -------- Global & root -------- */
+:root{
+  /* --- Colors Updated for a Fresher Look --- */
+  --nav-blue: #0b73d1; 
+  --accent: #2980b9; /* Slightly brighter blue */
+  --primary-gradient: linear-gradient(90deg, #2980b9, #3498db); /* New gradient */
+  --white: #ffffff;
+  --muted: #6b7280;
+  --light-bg: #f5f8fa; /* Lighter, subtle background */
+  --card-bg: #fff;
+  --border: #e6ebf2;
+  --radius: 12px;
+  --max-width: 1200px;
+  --header-h: 64px;
+  /* --- Shadows Updated for a Modern Lifted Effect --- */
+  --shadow-strong: 0 16px 30px rgba(20, 30, 60, 0.08), 0 4px 10px rgba(0, 0, 0, 0.02);
+  --shadow-soft: 0 4px 12px rgba(11, 115, 209, 0.05);
+  --text: #1f2937; /* Darker, more legible text */
+  --muted-2: #6b7280; /* Better contrast muted text */
+  --error: #e74c3c;
+  --success: #27ae60;
+  --signup-outline-color: rgba(44, 130, 201, 0.15); /* New variable for outline */
+}
+
+/* base */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  /* Using Inter as a modern, clean font */
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--light-bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height: 1.5; /* Improved readability */
+}
+
+/* container used for central max width */
+.container{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px; /* Increased side padding */
+}
+
+/* -------- Header / Navbar -------- */
+.navbar_main{
+  background: var(--nav-blue);
+  color: #fff;
+  position: sticky;
+  top:0;
+  z-index: 40;
+  height: var(--header-h);
+  display:flex;
+  align-items:center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Slightly stronger shadow */
+}
+.nav-inner{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo-block{
+  background: rgba(255,255,255,0.1); /* Subtle white background */
+  padding:8px 14px;
+  border-radius:8px;
+  transition: all 0.3s ease;
+}
+.logo-block:hover {
+  background: rgba(255,255,255,0.15);
+}
+.logo-text{
+  font-weight:900; /* Bolder logo */
+  color:#fff;
+  font-size:1.05rem;
+  letter-spacing:0.3px;
+}
+
+/* nav links centered */
+.nav-center{
+  display:flex;
+  gap:32px; /* Increased gap */
+  align-items:center;
+}
+.nav-center a{
+  color:#fff;
+  font-weight:600;
+  font-size:0.95rem;
+  padding:8px 10px;
+  border-radius:6px;
+  transition: background 0.2s ease;
+}
+.nav-center a.active, .nav-center a:hover{
+  background: rgba(255,255,255,0.15); /* More visible hover state */
+}
+
+/* hamburger (mobile) */
+.mobile-toggle{ display:none; }
+
+/* -------- Page layout: hero + card -------- */
+.auth-container{
+  display:grid;
+  grid-template-columns: 1fr 500px;
+  gap:40px;
+  align-items:center;
+  min-height: calc(100vh - var(--header-h) - 60px);
+  padding: 60px 0;
+}
+
+/* Left hero */
+.welcome-block{
+  padding-left: 40px;
+  padding-top: 0px;
+  /* Visual enhancement: Give the hero a soft, defined background on large screens */
+  background: linear-gradient(90deg, var(--light-bg), rgba(255,255,255,0));
+  align-self: stretch;
+  padding-right: 20px; 
+}
+.title-text{
+  font-size: 42px;
+  line-height:1.1;
+  color: var(--nav-blue);
+  font-weight: 800;
+  margin-bottom: 20px;
+  max-width: 620px;
+}
+.subtitle-text{
+  color: var(--muted-2);
+  margin-top: 10px;
+  margin-bottom: 30px;
+  max-width: 520px;
+  font-size: 16px;
+}
+
+/* Illustration box next to heading */
+.illustration-wrapper{
+  width: 380px; 
+  max-width: 100%;
+  margin-top: 22px;
+  background: #eaf6fb;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(11,115,209,0.1);
+  box-shadow: 0 10px 20px rgba(11,115,209,0.08);
+}
+.illustration-wrapper img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:12px;
+}
+
+/* Right form card (white card) */
+.auth-form-card{
+  width: 100%;
+  max-width: 1000px !important;
+  margin: 0 auto;
+  margin-top: 0px;
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: var(--shadow-strong);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* --- New: Outline for Sign Up Form --- */
+.auth-form-card.signup-outline {
+  /* Add subtle blue outline for the signup state */
+  border: 2px solid var(--signup-outline-color); 
+  box-shadow: 0 0 0 4px var(--signup-outline-color), var(--shadow-strong);
+  transform: translateY(-2px); /* Keep it slightly lifted for emphasis */
+}
+
+.auth-form-card:hover:not(.signup-outline) {
+  transform: translateY(-2px); /* Subtle lift on hover for login */
+}
+
+
+/* header inside card */
+.card-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 15px; }
+.card-title{ font-size: 24px; font-weight:700; color:var(--text); }
+
+/* toggle row */
+.toggle-switch-container{ display:flex; align-items:center; gap:10px; }
+.toggle-label{ color:var(--muted-2); font-size:13px; font-weight:600; }
+.toggle-switch {
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: var(--muted-2);
+  position: relative;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+.toggle-switch.active {
+  background-color: var(--accent);
+}
+.toggle-switch .slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.toggle-switch.active .slider {
+  transform: translateX(24px);
+}
+
+/* welcome message & success/error */
+.welcome-message{ color:var(--muted-2); font-size:15px; margin-bottom:20px; }
+
+/* ERROR MESSAGE STYLE ENHANCEMENT */
+.error-message{ 
+  background: #fef0f0; 
+  color: var(--error); 
+  padding:12px; 
+  border-radius:10px; 
+  margin-bottom:15px; 
+  font-weight:600; 
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  font-size: 14px;
+}
+
+/* form fields */
+.auth-form{ display:grid; gap:18px; margin-top:10px; }
+.form-group{ display:flex; flex-direction:column; gap:6px; }
+.form-group label{ 
+  font-size:13px; 
+  font-weight:600; 
+  color: #415060;
+}
+.form-group input{
+  padding: 14px 16px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#f9fafb;
+  font-size:15px;
+  color:var(--text);
+  transition: all 0.2s ease;
+}
+.form-group input:focus{ 
+  box-shadow: 0 0 0 3px rgba(44, 130, 201, 0.2);
+  outline:none; 
+  border-color: var(--accent); 
+  background: var(--white);
+}
+
+/* forgot password link */
+.forgot-password{ text-align:right; margin-bottom: 5px; }
+.forgot-password button{ 
+  background: none !important; /* Remove button background */
+  border: none; /* Remove button border */
+  padding: 0; /* Remove button padding */
+  cursor: pointer;
+  font-size:13px; 
+  color: var(--accent); 
+  text-decoration: none; 
+  font-weight: 500; 
+  transition: color 0.2s; 
+}
+.forgot-password button:hover{ 
+  color: var(--nav-blue); 
+  text-decoration: underline; 
+}
+
+/* Secondary button style (for "Back to Login") */
+.btn-secondary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+    background: var(--light-bg);
+    border-color: var(--accent);
+}
+
+.back-to-login-btn {
+    margin-top: 10px;
+}
+/* main button */
+.main-auth-btn{
+  /* NO CHANGE NEEDED: Already full width and centered */
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:10px;
+  padding:14px;
+  border-radius:10px;
+  background: var(--primary-gradient);
+  color:#fff;
+  font-weight:700;
+  font-size: 16px;
+  border:none;
+  cursor:pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(44, 130, 201, 0.3);
+}
+.main-auth-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.main-auth-btn:disabled{ opacity:0.6; cursor:not-allowed; box-shadow: none; }
+
+/* separators and social btn */
+.separator{ display:flex; align-items:center; gap:12px; margin:22px 0; }
+.separator::before, .separator::after{ content:''; height:1px; background:var(--border); flex:1; }
+.separator span { font-size: 13px; color: var(--muted-2); font-weight: 500; }
+
+/* Google button: reduced icon size, better styling */
+.btn-outline-google {
+  display: flex;
+  align-items: center;
+justify-content: center; /* Center content horizontally */
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #c5d4e1;
+  background:var(--primary-gradient);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  width: 100%; /* Ensure it spans the full width of the form */
+}
+.btn-outline-google:hover:not(:disabled) {
+  background:var(--primary-gradient);
+  border-color: var(--accent);
+}
+.btn-outline-google .google-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: inline-block;
+  margin-left: 0;
+  border-radius: 4px;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+.btn-outline-google span {
+  flex-grow: 0;
+  text-align: center;
+}
+
+/* footer */
+.footer-simple{ margin-top:60px; padding:30px 0; text-align:center; color:var(--muted-2); border-top: 1px solid var(--border); }
+
+/* small screens: stack and tighten */
+/* small screens: stack and tighten */
+@media (max-width: 980px) {
+  /* 1. Stack columns and center content */
+  .auth-container { 
+    grid-template-columns: 1fr; 
+    padding: 20px 0; 
+    gap: 20px;
+    min-height: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 2. Fix the container so it doesn't touch screen edges */
+  .container {
+    padding: 0 15px; 
+  }
+
+  /* 3. Hero scaling */
+  .welcome-block { 
+    text-align: center; 
+    padding: 0 10px; 
+    background: none; 
+    width: 100%;
+  }
+
+  .title-text {
+    font-size: 28px; /* Balanced for mobile */
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .subtitle-text {
+    font-size: 15px;
+    margin: 0 auto 15px auto;
+  }
+
+  .illustration-wrapper { 
+    width: 280px; /* Fixed width to prevent overflow */
+    margin: 10px auto; 
+    padding: 12px;
+  }
+
+  /* 4. The Card - Corrected for mobile width */
+  .auth-form-card { 
+    margin-top: 0; 
+    padding: 24px 20px; 
+    width: 100%; /* Spans the width of the container */
+    max-width: 100% !important;
+    border-radius: 16px;
+    box-sizing: border-box;
+  }
+
+  /* 5. Cleanup for Mobile Form Elements */
+  .form-group input {
+    font-size: 16px; /* Vital: prevents iOS from auto-zooming on focus */
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 22px;
+  }
+
+  .toggle-switch-container {
+    transform: scale(0.9); /* Slightly smaller toggle for mobile */
+  }
+
+  /* 6. Navigation Cleanup */
+  .nav-center { display: none; }
+  .mobile-toggle { display: block; }
+  
+  .btn-outline-google { 
+    justify-content: center; 
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens fix */
+@media (max-width: 400px) {
+  .title-text { font-size: 24px; }
+  .auth-form-card { padding: 20px 15px; }
+}
+
+/* small extra styles for hamburger bars and mobile menu */
+.hamburger { display:inline-block; width:22px; height:16px; position:relative; }
+.hamburger .bar { display:block; height:2px; background:#fff; border-radius:2px; position:absolute; left:0; right:0; }
+.hamburger .bar1 { top:0; }
+.hamburger .bar2 { top:7px; }
+.hamburger .bar3 { bottom:0; }
+
+.mobile-menu-outer { display:flex; }
+.mobile-menu { display:flex; flex-direction:column; }
+
+
+
+.error-message {
+  background-color: #fde8e8;
+  color: var(--danger);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border: 1px solid #fbd5d5;
+}
+
+/* --- Fix for Double Eye Icons --- */
+
+/* Hide the native "Eye" icon in Edge and Chrome */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none !important;
+}
+
+/* Hide the native "Eye" icon in Safari/Chrome */
+input::-webkit-contacts-auto-fill-button, 
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+/* Ensure our custom icon button stays centered and clean */
+.form-group div button {
+  z-index: 2;
+  outline: none;
+}
+
+.success-message {
+  background-color: #def7ec;
+  color: #03543f;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border: 1px solid #bcf0da;
+}

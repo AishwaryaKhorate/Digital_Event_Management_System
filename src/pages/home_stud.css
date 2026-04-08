@@ -1,0 +1,910 @@
+/* ====================================================================== */
+/* COMPLETE DASHBOARD STYLES                                              */
+/* ====================================================================== */
+
+.home-page {
+    margin-left: 250px; 
+    margin-top: 80px; 
+    padding: 30px;
+    background: linear-gradient(to bottom right, #eef5ff, #dce9ff);
+    min-height: 100vh;
+}
+
+.welcome {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.overview-title {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #444;
+}
+
+/* STATS CARDS */
+.stats-grid {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 25px;
+    text-align: center;
+    border-radius: 14px; 
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.08);
+    transition: 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.stat-value {
+    font-size: 28px;
+    margin-top: 6px;
+    font-weight: 700;
+    color: #1a73e8;
+}
+
+/* RECENT ACTIVITY */
+.section-title {
+    margin-top: 35px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.activity-box {
+    margin-top: 15px;
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 18px rgba(0,0,0,0.08);
+}
+
+.activity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 5px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.activity-row:last-child {
+    border-bottom: none;
+}
+
+.activity-text {
+    flex: 1;
+    margin-left: 15px;
+    color: #333;
+    font-size: 14px;
+}
+
+.activity-time {
+    color: #777;
+    font-size: 13px;
+}
+
+/* UPCOMING EVENTS */
+
+/* ===============================
+   HORIZONTAL SCROLL - DASHBOARD
+   =============================== */
+
+.events-grid {
+    display: flex;                 /* force single row */
+    gap: 24px;
+    overflow-x: auto;              /* horizontal scroll */
+    padding: 10px 5px 25px;
+    scroll-behavior: smooth;
+}
+
+/* Hide vertical scroll */
+.events-grid {
+    overflow-y: hidden;
+}
+
+/* Card width fixed */
+.events-grid .event-card {
+    min-width: 300px;
+    max-width: 300px;
+    flex-shrink: 0;
+}
+
+/* Scrollbar styling (Chrome, Edge) */
+.events-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.events-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.events-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Grab cursor UX */
+.events-grid {
+    cursor: grab;
+}
+
+.events-grid:active {
+    cursor: grabbing;
+}
+
+/* ===============================
+   UPDATED EVENT CARD ALIGNMENT
+   =============================== */
+
+.event-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 18px rgba(0,0,0,0.08);
+    transition: 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    /* Force identical width and height for alignment */
+    min-width: 300px;
+    max-width: 300px;
+    height: 600px; /* FIXED HEIGHT FOR ALL CARDS */
+    flex-shrink: 0;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-img-container {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+.event-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Keeps expanded text inside the card */
+}
+
+.event-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 5px;
+    /* Reserve space for 2 lines of title */
+    height: 48px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Container to handle description and "Read More" */
+.description-area {
+    min-height: 80px;
+    margin-bottom: 10px;
+}
+
+.event-description-text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.event-description-text.expanded {
+    -webkit-line-clamp: unset;
+    display: block;
+    max-height: 100px; /* Allows internal scroll if too long */
+    overflow-y: auto;
+}
+
+/* Bottom section forced to the base of the card */
+.event-info-rows {
+    margin-top: auto; /* PUSHES EVERYTHING BELOW TO THE BOTTOM */
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+    background: white;
+}
+
+.info-item {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Pricing aligned */
+.multi-price-container {
+
+    margin-top: 10px;
+
+    padding-top: 8px;
+
+    border-top: 1px dashed #eee;
+
+}
+
+
+
+.price-stack {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+}
+
+
+
+.price-item {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #444;
+
+}
+
+
+
+.price-item.free {
+
+    color: #10b981;
+
+}
+
+
+.event-card-footer {
+    margin-top: 10px;
+}
+
+.event-btn {
+    width: 100%;
+    padding: 10px 0;
+    background: #1a73e8;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.event-btn:hover {
+    background: #0f5edb;
+}
+
+/* Keep your existing overlays and lightbox styles below as they were */
+.cat-tag-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(26, 115, 232, 0.85);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    z-index: 2;
+    text-transform: capitalize;
+}
+
+.free-badge-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #10b981;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    z-index: 2;
+}
+
+.seats-full-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    border-radius: 12px 12px 0 0;
+}
+
+.seats-full-badge {
+    background-color: #ef4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    border: 2px solid white;
+}
+
+.disabled-btn {
+    background-color: #d1d5db !important;
+    cursor: not-allowed !important;
+}
+
+.image-lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.9); z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.lightbox-content {
+    max-width: 90%; max-height: 90%; position: relative;
+    animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox-content img { max-width: 100%; max-height: 85vh; border-radius: 8px; }
+
+.close-lightbox {
+    position: absolute; top: -50px; right: 0;
+    background: white; border: none; border-radius: 50%;
+    width: 40px; height: 40px; cursor: pointer;
+    color: #1e293b;
+    display: flex; justify-content: center; align-items: center;
+}
+.close-lightbox:hover { background: #f1f5f9; }
+
+/* Ensure description area doesn't break alignment */
+.event-description-text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Shows only 2 lines by default */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 38px; /* Reserves space for 2 lines to keep cards equal height */
+}
+
+/* Expansion class */
+.event-description-text.expanded {
+    -webkit-line-clamp: unset;
+    display: block;
+}
+
+/* Styling for the toggle button */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+    background-color: white;
+}
+
+/* Important: Force the info rows to stay at the bottom regardless of text expansion */
+.event-info-rows {
+    margin-top: auto; 
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+}
+
+/* Standardize price container height for alignment */
+.multi-price-container {
+    margin-top: 8px;
+    min-height: 70px; 
+    display: flex;
+    align-items: center;
+}
+/* Style for the Recent Activity Container */
+.activity-box {
+    max-height: 300px; /* Adjust height based on your design */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding-right: 10px; /* Space so text doesn't touch the scrollbar */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Custom Scrollbar Styling (Optional but recommended for UI) */
+.activity-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.activity-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.activity-box::-webkit-scrollbar-thumb {
+    background: #1a73e8; /* Matches your blue theme */
+    border-radius: 10px;
+}
+
+.activity-box::-webkit-scrollbar-thumb:hover {
+    background: #1557b0;
+}
+
+/* MOBILE SIDEBAR ANIMATION */
+.sidebar {
+    left: 0;
+}
+
+@media (max-width: 768px) {
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .close-sidebar {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+        background: none;
+        border: none;
+        color: #000;
+    }
+}
+
+.close-sidebar {
+    display: none;
+}
+
+
+/* MOBILE MENU BUTTON */
+.mobile-menu-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2500;
+    background: #ffffff;
+    border: none;
+    font-size: 26px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    display: none;
+}
+
+/* Overlay behind sidebar */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1800;
+    display: none;
+}
+
+/* SHOW mobile button on small screen */
+@media (max-width: 768px) {
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    /* When sidebar is open, show overlay */
+    .sidebar.open + .sidebar-overlay {
+        display: block;
+    }
+
+    /* Adjust dashboard layout for mobile */
+    .home-page {
+        margin-left: 0 !important;
+        margin-top: 70px !important;
+        padding: 20px;
+    }
+}
+
+
+/* FIX MOBILE DASHBOARD LAYOUT */
+@media (max-width: 768px) {
+
+    .home-page {
+        margin-left: 0 !important;
+        margin-top: 100px !important;
+        padding: 15px;
+        width: 100% !important;
+    }
+
+    .navbar {
+        z-index: 3000;
+    }
+
+    .events-grid {
+        padding-left: 10px !important;
+    }
+
+    .section-title {
+        margin-left: 5px !important;
+    }
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: white;
+    border: none;
+    font-size: 26px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+
+
+/* Overlay behind sidebar */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 250px !important; /* match sidebar width */
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1800;
+    display: none;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+
+/* ============================================================
+   FIXED + CLEAN SIDEBAR HEADER
+   ============================================================ */
+
+/* Notification small badge */
+.notif-badge {
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+/* Sidebar Logo Wrapper - TOP LEFT */
+.sidebar-logo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;      /* Move logo left */
+    padding-top: 20px;       /* Add space above */
+    margin-bottom: 20px;
+}
+
+/* Styled Logo Box (Organizer Style) */
+.sidebar-logo-box {
+    background: #0066ff;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.logo-bold { font-weight: 700; }
+.logo-thin { font-weight: 400; }
+
+/* Close Button (Mobile Only) */
+.sidebar-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    border: none;
+    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+    font-size: 28px;
+    display: none;           /* hidden by default */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 3000;
+    cursor: pointer;
+}
+
+/* Show close button only on mobile */
+@media (max-width: 768px) {
+    .sidebar-close-btn {
+        display: flex;
+    }
+
+    .sidebar-logo-wrapper {
+        padding-top: 70px !important;   /* Push logo down so X button is clear */
+    }
+}
+
+/* LOGO POSITION - TOP LEFT */
+.sidebar-logo-wrapper {
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+
+/* Logo Box */
+.sidebar-logo-box {
+    background: #0066ff;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.20);
+}
+
+.logo-bold { font-weight: 700; }
+.logo-thin { font-weight: 300; }
+
+/* CLOSE BUTTON */
+.sidebar-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  background: #fff;
+  border-radius: 10px;
+
+  width: 38px;
+  height: 38px;
+
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 38px;
+  text-align: center;
+
+  border: 1px solid #ddd;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+
+  z-index: 9999;
+}
+
+
+/* SHOW CLOSE BUTTON ON MOBILE */
+@media (max-width: 768px) {
+    .sidebar-close-btn {
+        display: flex;
+    }
+}
+
+/* === FINAL FIX FOR MOBILE SIDEBAR === */
+
+/* Sidebar wrapper */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;      /* hidden by default */
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    z-index: 3000;
+    padding-top: 0 !important;
+    transition: left 0.3s ease;
+}
+
+/* When opened */
+.sidebar.open {
+    left: 0;
+}
+
+/* 1️⃣ CLOSE BUTTON - CLEAR & ALWAYS VISIBLE */
+.sidebar-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    font-size: 26px;
+    font-weight: bold;
+    color: #000;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+
+    display: none; /* Hide on desktop */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Show close button only on mobile */
+@media (max-width: 768px) {
+    .sidebar-close-btn {
+        display: flex;
+    }
+}
+
+/* DIGIEVENT LOGO FIXED TOP LEFT */
+.sidebar-logo-wrapper {
+    margin-top: 15px !important;  /* just below the close (×) button */
+    padding: 0 !important;
+    padding-left: 5px !important;
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.sidebar-logo-box {
+    background: #0066ff;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+
+/* ============================
+   FINAL FIX FOR HAMBURGER MENU
+   ============================ */
+
+@media (max-width: 768px) {
+
+  .mobile-menu-btn {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 28px;
+    height: 20px;
+
+    position: absolute;
+    top: 18px;
+    left: 18px;
+
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+
+    z-index: 5000;
+    cursor: pointer;
+  }
+
+  .menu-line {
+    width: 100%;
+    height: 3px;
+    background: #000;   /* PURE BLACK */
+    border-radius: 2px;
+}
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+/* 🔥 FINAL FIX — Remove white box from NAVBAR profile image */
+.navbar img {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  width: 38px !important;
+  height: 38px !important;
+}
+.nav-profile-img {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+
+  /* override any conflicting CSS */
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.rightIconsContainer img,
+.navbar img,
+nav img {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================
+   MOBILE ONLY: Scroll for STATS CARDS
+   (Attended, Certificate, Avg Rating)
+   ========================================== */
+@media (max-width: 768px) {
+
+  .stats-grid {
+    display: flex !important;          /* make in one row */
+    flex-wrap: nowrap !important;
+    gap: 15px;
+
+    overflow-x: auto;                  /* horizontal scroll */
+    overflow-y: hidden;
+    padding-bottom: 10px;
+
+    -webkit-overflow-scrolling: touch; /* smooth iOS scroll */
+    scroll-behavior: smooth;
+  }
+
+  .stats-grid .stat-card {
+    min-width: 240px;                  /* fixed card width */
+    flex: 0 0 auto;                    /* prevent shrinking */
+  }
+
+  /* Optional scrollbar styling */
+  .stats-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .stats-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+
+  .stats-grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

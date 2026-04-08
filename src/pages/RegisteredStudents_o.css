@@ -1,0 +1,240 @@
+/* theme fallbacks */
+:root {
+  --sidebar-width: 250px;
+  --page-padding: 22px;
+  --bg-page: #f6f8fb;
+  --card-bg: #fff;
+  --accent: #0b73d1;
+  --muted: #6b7280;
+  --radius: 12px;
+  --shadow: 0 8px 26px rgba(2,6,23,0.06);
+  --present-bg: #e6f2ff; /* light blue row background for present */
+  --present-accent: #0b73d1;
+}
+
+/* ------------------------------------------- */
+/* 🚀 FIXES FOR LAYOUT & ALIGNMENT (Desktop) */
+/* ------------------------------------------- */
+
+/* NEW WRAPPER: Handles the Title and Top Controls alignment */
+.page-header-wrapper {
+  /* Apply the offset equal to the sidebar width */
+  margin-left: var(--sidebar-width);
+  /* Use padding for internal spacing */
+  padding: var(--page-padding) var(--page-padding) 0 var(--page-padding); 
+  /* Aligns with the overall page content top margin */
+  margin-top: 60px; 
+}
+
+/* container: Holds the main table/card content */
+.page-content.register-page {
+  /* Apply the offset equal to the sidebar width */
+  margin-left: var(--sidebar-width);
+  /* The padding is now handled by the header wrapper too, so keep it here for the table section */
+  padding: var(--page-padding); 
+  /* Reduce top margin as the content now follows the header wrapper */
+  margin-top: 0; 
+  background: linear-gradient(180deg, var(--bg-page), #f8fbff);
+  min-height: calc(100vh - 80px);
+}
+
+/* title: Placed inside .page-header-wrapper */
+.title-main {
+  font-size: 24px;
+  /* Reset previous fixed margins */
+  margin-top: 30px; 
+  position: center;
+  margin-left: 0; 
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* Top Controls: Placed inside .page-header-wrapper */
+.top-controls {
+  display: flex;
+  /* Reset previous fixed margins */
+  margin-left: 0; 
+margin-top: 20px;
+
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------- */
+/* CONTROL ELEMENTS (Filters/Buttons) */
+/* ------------------------------------------- */
+
+.search-bar {
+  flex: 1 1 320px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(11,115,209,0.08);
+  font-size: 14px;
+  background: white;
+}
+.filter-dropdown {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(11,115,209,0.08);
+  background: white;
+  font-size: 14px;
+  /* Ensure dropdowns take their minimum space and don't push the search bar unnecessarily */
+  flex-shrink: 0; 
+  width: auto;
+}
+.scan-btn, .download-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform .15s ease;
+  flex-shrink: 0;
+}
+.scan-btn {
+  background: linear-gradient(90deg, var(--accent), #0968b5);
+  color: white;
+  box-shadow: 0 8px 18px rgba(11,115,209,0.12);
+}
+.download-btn {
+  background: linear-gradient(90deg, #02a950, #018b40);
+  color: white;
+  box-shadow: 0 8px 18px rgba(2,120,60,0.10);
+}
+.scan-btn:hover, .download-btn:hover { 
+  transform: translateY(-3px); 
+}
+
+/* ------------------------------------------- */
+/* TABLE STYLES */
+/* ------------------------------------------- */
+
+/* table card */
+.table-card {
+  padding: 0;
+  border-radius: 12px;
+  overflow: auto; /* Allows horizontal scrolling for the table */
+  box-shadow: var(--shadow);
+}
+
+/* table */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px; /* Forces horizontal scroll on smaller screens */
+}
+.student-table thead th {
+  background: linear-gradient(90deg, rgba(11,115,209,0.06), rgba(11,115,209,0.02));
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0b2540;
+  border-bottom: 1px solid rgba(11,115,209,0.06);
+  white-space: nowrap; /* Prevents text wrap in headers */
+}
+.student-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f2f5fb;
+  font-size: 14px;
+  vertical-align: middle;
+  white-space: nowrap; /* Prevents text wrap in cells */
+}
+
+/* empty row message */
+.empty-row {
+  text-align: center;
+  padding: 28px;
+  color: var(--muted);
+}
+
+/* mark present button */
+.mark-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(11,115,209,0.12);
+  background: blue;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+.mark-btn.present {
+  background: green;
+  color: white;
+  border: none;
+}
+
+/* present row highlight */
+.row-present {
+  background: var(--present-bg);
+  transition: background .18s ease;
+}
+
+/* Scanner Modal (Unchanged) */
+.scanner-backdrop { /* ... */ }
+.scanner-modal { /* ... */ }
+/* ... (rest of modal styles) ... */
+
+/* ------------------------------------------- */
+/* 📱 RESPONSIVENESS (Mobile/Tablet) */
+/* ------------------------------------------- */
+
+@media (max-width: 900px) {
+  /* Assuming the sidebar is still visible but perhaps minimized */
+  .page-content.register-page,
+  .page-header-wrapper {
+      margin-left: 80px; /* Adjust if sidebar minimizes to a different width */
+  }
+  .top-controls { gap: 10px; }
+  .student-table { min-width: 700px; }
+}
+
+@media (max-width: 600px) {
+  /* 🚀 FULL MOBILE LAYOUT */
+  
+  /* Reset fixed sidebar margins and use full width */
+  .page-content.register-page,
+  .page-header-wrapper {
+    margin-left: 0;
+    padding-left: 14px;
+    padding-right: 14px; 
+  }
+  
+  /* Adjust top positioning to clear the fixed Navbar */
+  .page-header-wrapper {
+      padding-top: 14px; 
+      margin-top: 60px; /* Reduced space after navbar */
+      padding-bottom: 0;
+  }
+  
+  /* Remove top padding from the content wrapper itself */
+  .page-content.register-page {
+      margin-top: 0; 
+      padding-top: 14px;
+  }
+
+  .title-main {
+      font-size: 20px;
+  }
+  
+  /* Top Controls stacked vertically */
+  .top-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  /* Search bar and Dropdowns take full width when stacked */
+  .search-bar, 
+  .filter-dropdown,
+  .download-btn {
+      flex: 1 1 100%;
+      width: 100%;
+  }
+
+  /* Table becomes horizontally scrollable */
+  .student-table { min-width: 600px; }
+  .table-card { overflow-x: auto; } /* Use auto instead of scroll */
+}

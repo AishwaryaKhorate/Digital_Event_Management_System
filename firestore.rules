@@ -1,0 +1,245 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ⭐️ ADMIN/ROLE HELPER FUNCTIONS: Read role from the /users document ⭐️
+    function getRole() {
+      // Returns the 'role' field from the user's document in the 'users' collection
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    
+    function isAdmin() {
+      return getRole() == "admin";
+    }
+
+    function isOrganizer() {
+      return getRole() == "organizer";
+    }
+
+    function isStudent() {
+      return getRole() == "student";
+    }
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isMember(chatData) {
+      return isAuthenticated() && chatData.users.hasAny([request.auth.uid]);
+    }
+
+
+    // =======================================================
+    // 1. /users COLLECTION (Auth/Role Data)
+    // =======================================================
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow delete: if isAdmin();
+      
+      // ✅ UPDATED UPDATE RULE
+      allow update: if (
+          isAuthenticated() && 
+          request.auth.uid == userId && 
+          // This allows adding/updating stats (like averageRating) 
+          // while still preventing the user from changing their own 'role'
+          (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'uid', 'lastClaimsUpdate']) || isAdmin())
+        ) || isAdmin(); 
+    }
+
+    // =======================================================
+    // 2. /student_profile COLLECTION (Student Data)
+    // =======================================================
+   match /student_profile/{userId} {
+      allow read, update: if isAuthenticated() && request.auth.uid == userId && (isStudent() || isOrganizer() || isAdmin());
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // =======================================================
+    // 2.5 /organizers COLLECTION (Organizer Profile Data)
+    // =======================================================
+    match /organizers/{userId} {
+      // Allows the organizer to see and edit their own profile
+      // Allows others to read it (so students can see who is organizing an event)
+      allow read: if isAuthenticated(); 
+      allow create, update: if isAuthenticated() && request.auth.uid == userId && (isOrganizer() || isAdmin());
+      allow delete: if isAdmin();
+    }
+// =======================================================
+// 3. /events COLLECTION 
+// =======================================================
+match /events/{eventId} {
+  allow read: if true; 
+  
+  // ✅ FIX: Allow students to update ONLY the currentRegistrations field
+  allow update: if isAuthenticated() && (
+    isAdmin() || 
+    isOrganizer() || 
+    (isStudent() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['currentRegistrations']))
+  );
+  
+  allow create, delete: if isAdmin() || isOrganizer(); 
+}
+    // =======================================================
+    // 4. /feedback (Only Admins can read)
+  // =======================================================
+match /feedback/{fid} {
+  // 1. Allow creating if logged in
+  allow create: if request.auth != null;
+
+  // 2. UPDATED: Allow reading if:
+  //    - The user is an Admin or Organizer
+  //    - OR the feedback document's userId matches the person trying to read it
+  allow read: if request.auth != null && (
+    isAdmin() || 
+    isOrganizer() || 
+    resource.data.userId == request.auth.uid
+  );
+
+  allow delete: if isAdmin();
+}
+    // =======================================================
+    // 5. CHAT / MESSAGES
+    // =======================================================
+    match /chats/{chatId} {
+      allow create: if isMember(request.resource.data);
+      allow read, update, delete: if isMember(resource.data);
+      
+      match /messages/{messageId} {
+        allow read: if isMember(get(/databases/$(database)/documents/chats/$(chatId)).data);
+        allow create: if isMember(get(/databases/$(database)/documents/chats/$(chatId)).data)
+                      && request.resource.data.senderId == request.auth.uid;
+      }
+    }
+// Add this block to your existing rules
+// =======================================================
+// 6. /contact_messages COLLECTION (Public Create)
+// =======================================================
+match /contact_messages/{docId} {
+  // Allow anyone to create a message (submit the contact form)
+  allow create: if true; 
+  
+  // Only Admins should be able to read/delete these messages
+  allow read, delete: if isAdmin();
+}
+
+
+// =======================================================
+// HIGHLIGHTS COLLECTION
+// =======================================================
+match /highlights/{docId} {
+
+  // Everyone can view highlights
+  allow read: if true;
+
+  // Any logged-in user (student or organizer) can upload
+  allow create: if request.auth != null;
+
+  // DELETE / UPDATE RULES
+  allow delete, update: if request.auth != null && (
+
+    // ✅ Organizer can delete ANY highlight
+    isOrganizer()
+
+    ||
+
+    // ✅ Student can delete ONLY his own highlights
+    (
+      isStudent() &&
+      resource.data.uploadedBy == request.auth.uid
+    )
+
+    ||
+
+    // ✅ Admin safety access
+    isAdmin()
+  );
+}
+
+// =======================================================
+// 7. /registrations COLLECTION (Event Signups)
+// =======================================================
+match /registrations/{regId} {
+  allow create: if isAuthenticated();
+
+  // ✅ ALLOW PUBLIC READ FOR VERIFICATION
+  // This allows anyone (even logged out) to read a registration for verification purposes.
+  allow read: if true; 
+
+  // Keep these restricted
+  allow update: if isAdmin() || isOrganizer();
+  allow delete: if isAdmin();
+}
+
+// =======================================================
+// 8. /notifications COLLECTION (Targeted Alerts)
+// =======================================================
+match /notifications/{notifId} {
+
+  // 🔒 ONLY CLOUD FUNCTIONS CAN CREATE
+  allow create: if false;
+
+  // ✅ Admin can read all
+  // ✅ User can read ONLY their notifications
+  allow read: if isAuthenticated() && (
+    isAdmin() ||
+    request.auth.uid == resource.data.userId
+  );
+
+  // ✅ User can mark own notifications as read
+  // ✅ Admin safety access
+  allow update: if isAuthenticated() && (
+    isAdmin() ||
+    request.auth.uid == resource.data.userId
+  );
+
+  allow delete: if isAuthenticated() && (
+    isAdmin() ||
+    request.auth.uid == resource.data.userId
+  );
+}
+
+// =======================================================
+// 9. /users/{uid}/activities SUBCOLLECTION (Student Dashboard)
+// =======================================================
+match /users/{userId}/activities/{activityId} {
+
+  // ✅ Student can read ONLY their own activities
+  allow read: if request.auth != null && request.auth.uid == userId;
+
+  // ✅ ALLOW CREATE: The student can now save their own feedback activity
+  allow create: if request.auth != null && request.auth.uid == userId;
+
+  // ❌ No updates or deletes from client (keeps history safe)
+  allow update, delete: if false;
+}
+// =======================================================
+// 10. /user_chats COLLECTION (Chatbot Persistence)
+// =======================================================
+match /user_chats/{userId} {
+
+  // Student can read & write ONLY their own chats
+  allow read, write: if request.auth != null
+                     && request.auth.uid == userId;
+
+  match /sessions/{sessionId} {
+    allow read, write: if request.auth != null
+                       && request.auth.uid == userId;
+                       
+  // ✅ ADD THIS BLOCK (MISSING)
+    match /messages/{messageId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+  }
+}
+
+
+// =======================================================
+    // DEFAULT DENY RULE
+    // =======================================================
+    match /{document=**} {
+      allow read, write: if false; 
+    }
+  }
+}

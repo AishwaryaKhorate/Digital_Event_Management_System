@@ -1,0 +1,2349 @@
+.admin-scope {
+  all: initial;
+  font-family: 'Inter', sans-serif !important;
+  display: block;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ---------- global ---------- */
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,Helvetica,sans-serif}
+:root{
+  --bg:#f5f7fb; --card:#ffffff; --muted:#6b7280; --primary:#0b78d1; --success:#059669; --danger:#ef4444;
+}
+body{background:var(--bg);color:#0f172a}
+
+/* ---------- app layout ---------- */
+.admin-scope .app-shell{display:flex;min-height:100vh}
+.admin-scope .sidebar{width:260px;background:var(--card);border-right:1px solid #e6e9ef;padding:18px;position:fixed;left:0;top:0;bottom:0;overflow:auto}
+.admin-scope .sidebar .brand{display:flex;align-items:center;gap:12px;margin-bottom:12px;cursor:pointer}
+.admin-scope .logo{width:44px;height:44px;border-radius:10px;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.admin-scope .brand-text{font-weight:700;color:#0f172a}
+.admin-scope .collapse-btn{background:transparent;border:none;cursor:pointer;margin-left:auto}
+
+/* nav */
+.admin-scope .nav-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.admin-scope .nav-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;color:#111;text-decoration:none}
+.admin-scope .nav-item:hover{background:#f3f8ff}
+.admin-scope .nav-item.active{background:#eef6ff;border-left:4px solid var(--primary);padding-left:8px}
+
+/* footer */
+.admin-scope .sidebar-footer{margin-top:18px;font-size:13px;color:var(--muted)}
+
+/* topbar */
+.admin-scope .topbar{position:fixed;left:260px;right:0;top:0;height:68px;background:var(--card);display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid #e6e9ef;z-index:40}
+.admin-scope .app-shell.sidebar-collapsed .topbar{left:80px}
+.admin-scope .search{padding:10px 12px;border-radius:10px;border:1px solid #e6e9ef;min-width:360px}
+
+/* main content */
+.admin-scope .main-content_a{margin-left:260px;flex:1;padding:92px 28px 40px;transition:margin-left .28s; margin-top:0px;}
+.admin-scope .app-shell.sidebar-collapsed .main-content{margin-left:80px;padding-left:28px}
+
+/* page wrapper */
+.admin-scope .content-wrapper{max-width:1200px;margin:0 auto}
+.admin-scope .page{background:transparent}
+.admin-scope .page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.admin-scope .page-header h1{font-size:26px}
+.admin-scope .page-actions{display:flex;gap:10px;align-items:center}
+.admin-scope .btn{padding:8px 12px;border-radius:10px;border:1px solid #e6e9ef;background:#fff;cursor:pointer}
+.admin-scope .btn.primary{background:var(--primary);color:#fff;border:none}
+
+/* ---------- stats grid ---------- */
+.admin-scope .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:20px}
+.admin-scope .stat-card{display:flex;gap:14px;align-items:center;padding:18px;border-radius:14px;background:var(--card);box-shadow:0 10px 24px rgba(16,24,40,0.04)}
+.admin-scope .stat-icon{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#eaf6ff,#d9eefc);display:flex;align-items:center;justify-content:center;font-size:22px}
+.admin-scope .stat-value{font-weight:800;font-size:20px}
+
+/* ---------- charts area ---------- */
+.admin-scope .charts-area{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.admin-scope .chart-card,
+.admin-scope .activity-card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.04);
+}
+
+.admin-scope .chart-card h3,.activity-card h3{margin-bottom:12px}
+.admin-scope .chart-skeleton{display:flex;flex-direction:column;gap:10px;padding:12px}
+.admin-scope .skeleton{height:12px;background:#f1f5f9;border-radius:8px}
+.admin-scope .skeleton.short{width:60%}
+
+/* activity */
+.admin-scope .activity-list{display:flex;flex-direction:column;gap:12px}
+.admin-scope .activity-item{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:8px;border-bottom:1px dashed #f1f5f9}
+.admin-scope .muted{color:var(--muted);font-size:13px}
+
+/* ---------- table ---------- */
+.admin-scope .table-card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+.admin-scope .data-table{width:100%;border-collapse:collapse}
+.admin-scope .data-table thead th{background:#f8fafc;padding:12px;text-align:left;font-size:14px;border-bottom:1px solid #eef2f7}
+.admin-scope .data-table tbody td{padding:14px;border-bottom:1px solid #f3f4f6}
+.admin-scope .icon-btn{background:#fff;border:1px solid #eef2f7;padding:6px;border-radius:8px;cursor:pointer;margin-left:6px}
+.admin-scope .badge{padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px}
+.admin-scope .badge.green{background:#ecfdf5;color:var(--success)}
+.admin-scope .badge.yellow{background:#fff7ed;color:#92400e}
+.admin-scope .badge.red{background:#fff1f2;color:var(--danger)}
+
+/* ---------- cards grid & feedback ---------- */
+.admin-scope .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.admin-scope .feedback-card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+.admin-scope .fb-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.admin-scope .fb-event{font-size:13px;color:var(--muted);margin-bottom:8px}
+
+/* notifications */
+.admin-scope .notif-list{list-style:none;padding:0}
+.admin-scope .notif-item{display:flex;justify-content:space-between;padding:12px;border-bottom:1px dashed #f1f5f9}
+
+/* small helpers */
+.admin-scope .small-search{padding:8px 10px;border-radius:8px;border:1px solid #e6e9ef}
+.admin-scope .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* responsive */
+@media (max-width:980px){
+  .admin-scope .charts-area{grid-template-columns:1fr}
+  .admin-scope .main-content{padding-left:18px;padding-right:18px}
+  .admin-scope .search{min-width:160px}
+  .admin-scope .sidebar{display:none}
+  .admin-scope .main-content{margin-left:0}
+  .admin-scope .topbar{left:0}
+}
+/* Search dropdown (in Topbar) */
+.admin-scope .search-dropdown {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  width: 520px;
+  max-height: 360px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(17,24,39,0.08);
+  z-index: 120;
+}
+
+.admin-scope .search-dropdown.quick {
+  width: 360px;
+}
+
+.admin-scope .search-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f6fa;
+}
+
+.admin-scope .search-suggestion:last-child {
+  border-bottom: none;
+}
+
+.admin-scope .search-suggestion.active {
+  background: #f3f8ff;
+}
+
+.admin-scope .sugg-left {
+  width: 36px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.admin-scope .sugg-body {
+  flex: 1;
+}
+
+.admin-scope .sugg-title {
+  font-weight: 700;
+}
+
+.admin-scope .sugg-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+.admin-scope .sugg-right {
+  font-size: 12px;
+  color: #9aa3b2;
+  text-transform: capitalize;
+}
+
+.admin-scope .quick-row {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.admin-scope .quick-row:last-child {
+  border-bottom: none;
+}
+/* === Layout restore using CSS variables set by Layout.jsx ===
+   Paste this at the end of src/styles/App.css
+*/
+.admin-scope :root {
+  /* default fallbacks (will be overridden inline by Layout.jsx) */
+  --sidebar-width: 230px;
+  --sidebar-collapsed: 60px;
+  --topbar-height: 64px;
+}
+
+/* Fix sidebar to the left so it doesn't push content with flex layout */
+.admin-scope .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  z-index: 30;
+  overflow-y: auto;
+}
+
+/* support collapsed class if you use it elsewhere */
+.admin-scope .sidebar.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+/* Right section starts after the fixed sidebar */
+.admin-scope .right-section {
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Topbar should align to the right section and stay fixed at the top of it */
+.admin-scope .topbar {
+  position: fixed;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  z-index: 25;
+  background: transparent; /* keep visuals unchanged */
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* When sidebar has collapsed class (if toggled) the left offsets should follow */
+.admin-scope .sidebar.collapsed ~ .right-section,
+.admin-scope .sidebar.collapsed ~ .right-section .topbar {
+  margin-left: var(--sidebar-collapsed);
+  left: var(--sidebar-collapsed);
+}
+
+/* Main content sits below the topbar */
+.admin-scope .content-area {
+  margin-top: var(--topbar-height);
+  padding: 24px; /* match your UI spacing; adjust if needed */
+  min-height: calc(100vh - var(--topbar-height));
+}
+
+/* Responsive safety: ensure small widths still show correctly */
+@media (max-width: 900px) {
+  .admin-scope :root {
+    --sidebar-width: 60px;
+  }
+  .admin-scope .sidebar { width: 60px; }
+  .admin-scope .right-section { margin-left: 60px; }
+  .admin-scope .topbar { left: 60px; }
+}
+/* ===== Topbar: centered search + right-side notifications/avatar ===== */
+/* Add at end of src/styles/App.css */
+
+/* ensure topbar uses flex layout */
+.admin-scope .topbar {
+  display: flex;
+  
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  height: var(--topbar-height);
+  background: transparent;
+}
+
+/* left: toggle button area (keeps logo/toggle) */
+.admin-scope .topbar-left {
+  display: flex;
+  align-items: center;
+  min-width: 56px; /* reserve space for toggle */
+  z-index: 26;
+}
+
+/* middle: search area — flex:1 to take available center space and center its child */
+.admin-scope .topbar-middle {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* centers the search bar horizontally */
+  align-items: center;
+  padding: 0 8px;
+  /* keep topbar visually same by not changing background */
+}
+
+/* actual search input styling */
+.admin-scope .search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.admin-scope .search-input {
+  width: min(820px, 72%); /* responsive cap, adjust if you prefer */
+  min-width: 260px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  outline: none;
+  font-size: 14px;
+}
+
+/* right: notification + avatar */
+.admin-scope .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 120px; /* ensures right icons sit at right edge */
+  justify-content: flex-end;
+  padding-left: 8px;
+}
+
+/* small icon-button styling */
+.admin-scope .icon-btn {
+  border: none;
+  background: transparent;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* images inside icon buttons */
+.admin-scope .icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* avatar */
+.admin-scope .user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+/* notification badge */
+.admin-scope .notif-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 12px;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* responsive adjustments */
+@media (max-width: 1100px) {
+  .admin-scope .search-input { width: 60%; min-width: 180px; }
+  .admin-scope .topbar-right { min-width: 100px; }
+}
+@media (max-width: 700px) {
+  .admin-scope .search-input { width: 100%; min-width: 120px; }
+  .admin-scope .topbar-middle { padding: 0 6px; }
+}
+/* ---------------- Notification Drawer & Overlay ---------------- */
+
+/* overlay */
+.admin-scope .notif-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+  z-index: 999;
+}
+.admin-scope .notif-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* drawer container */
+.admin-scope .notif-drawer {
+  position: fixed;
+  top: 0;
+  right: -420px;              /* hidden by default, slides in */
+  width: 380px;
+  max-width: 95%;
+  height: 100%;
+  background: var(--card);
+  box-shadow: -8px 0 30px rgba(17,24,39,0.12);
+  transition: right .28s cubic-bezier(.2,.9,.3,1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+  border-left: 1px solid rgba(0,0,0,0.03);
+}
+.admin-scope .notif-drawer.open {
+  right: 0;
+}
+
+/* drawer header */
+.admin-scope .notif-drawer-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding-bottom:6px;
+  border-bottom: 1px solid #f3f6fa;
+}
+
+/* list area */
+.admin-scope .notif-list-wrap {
+  overflow-y: auto;
+  padding: 8px 2px;
+  flex: 1;
+}
+
+/* notification list & items */
+.admin-scope .notifications-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-scope .notification-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(2,6,23,0.04);
+  background: var(--card);
+  cursor: pointer;
+  transition: background .12s;
+}
+.admin-scope .notification-item.unread {
+  background: rgba(59,130,246,0.04); /* subtle blue highlight */
+}
+.admin-scope .notification-item .meta { font-size: 12px; color: var(--muted); }
+
+/* left square avatar letter */
+.admin-scope .notification-item .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  flex-shrink:0;
+  background: #eef2ff;
+  color: #0f172a;
+}
+
+/* right actions (mark/read/remove) */
+.admin-scope .notification-actions { display:flex; gap:8px; align-items:center; }
+.admin-scope .notification-actions .btn { padding:6px 8px; font-size:13px; }
+
+/* empty state inside drawer */
+.admin-scope .notif-drawer .empty-state {
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* make sure existing .notif-badge looks good on the bell */
+.admin-scope .notif-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 12px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* responsive: full width drawer on small screens */
+@media (max-width: 640px) {
+  .admin-scope .notif-drawer { width: 100%; right: -100%; }
+  .admin-scope .notif-drawer.open { right: 0; }
+  .admin-scope .notif-drawer { border-left: none; border-top: 1px solid rgba(0,0,0,0.03); }
+}
+
+
+/* Base admin button */
+.admin-scope .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  /* border-radius: 999px; */
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #0b73d1;
+  background-color: #0b73d1;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+/* Hover & focus – keep it blue */
+.admin-scope .btn:hover,
+.admin-scope .btn:focus {
+  outline: none;
+  background-color: #085da6;
+}
+
+/* Ghost style (used for "Remove") */
+.admin-scope .btn.btn-ghost {
+  background-color: transparent;
+  color: #0b73d1;
+  border-color: rgba(148, 163, 184, 0.7);
+}
+
+.admin-scope .btn.btn-ghost:hover,
+.admin-scope .btn.btn-ghost:focus {
+  background-color: rgba(219, 234, 254, 0.8);
+}
+
+/* Danger style */
+.admin-scope .btn.btn-danger {
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+.admin-scope .btn.btn-danger:hover,
+.admin-scope .btn.btn-danger:focus {
+  background-color: #b91c1c;
+}
+
+/* IMPORTANT: keep disabled buttons visible */
+.admin-scope .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #93c5fd; /* light blue but visible */
+  color: #ffffff;
+  border-color: #93c5fd;
+}
+
+
+.admin-scope .sidebar {
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-scope .sidebar-logo {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: flex-start;   /* or flex-start if you want left */
+}
+
+/* reuse your global logo styles, but make sure they apply here too */
+.admin-scope .sidebar .logo-block {
+  background: var(--logo-blue);
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-scope .sidebar .logo-text {
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.05rem;
+}
+/* Add this to your App.css or a dedicated admin/styles file */
+.admin-scope .fb-event-info {
+    display: flex;
+    justify-content: space-between; /* Puts event on left, date on right */
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.admin-scope .fb-date {
+    color: #888;
+    font-style: italic;
+}
+
+/* ---------- cards grid & feedback ---------- */
+.admin-scope .cards-grid{
+    display:grid;
+    /* FIX: Ensure responsive grid columns for cards */
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:18px; /* Increase gap for better separation */
+    margin-top: 10px;
+}
+.admin-scope .feedback-card{
+    background:var(--card);
+    padding:18px; /* Slightly increased padding */
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    border: 1px solid #f3f6fa;
+}
+.admin-scope .fb-head{
+    /* FIX: Use Flexbox to separate Name/Stars (left) from any potential element on the right */
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start; /* Align vertically at the top */
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f3f6fa;
+}
+/* 💡 NEW CLASS: This assumes you wrap the Name and Stars in the component with <div class="fb-name-rating">...</div> */
+.admin-scope .fb-name-rating { 
+    display: flex;
+    flex-direction: column; /* Stacks Name and Stars vertically */
+    gap: 2px;
+    flex-grow: 1; /* Allows it to take up space */
+}
+
+.admin-scope .fb-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a202c; 
+}
+.admin-scope .fb-stars {
+    font-size: 18px;
+    color: gold; 
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* Prevent stars from wrapping */
+}
+
+/* FIX: Existing definition is overridden for better alignment */
+.admin-scope .fb-event-info {
+    display: flex;
+    justify-content: space-between; /* Puts event on left, date on right */
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px; /* Slightly smaller text for context */
+    color: var(--muted);
+}
+.admin-scope .fb-event{
+    font-weight: 600;
+    color: var(--primary); /* Highlight event name */
+}
+/* FIX: Existing definition is overridden */
+.admin-scope .fb-date {
+    color: #9aa3b2;
+    font-size: 12px;
+    font-style: normal; /* Removed italic */
+    margin-left: 15px;
+}
+.admin-scope .fb-text {
+    font-size: 14px;
+    color: #495057;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+/* --- UPDATION: Add this new class to your App.css --- */
+.admin-scope .fb-name-rating-group {
+    /* Use flexbox to stack the name and the stars vertically */
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* Small gap between the name and the stars */
+    /* This allows the name/stars to take up all available horizontal space 
+       so the stars stay beneath the name. */
+}
+/* =====================================================
+   ADMIN MOBILE VIEW (DESKTOP UI UNCHANGED)
+===================================================== */
+
+@media (max-width: 1024px) {
+
+  /* ---------- Sidebar Drawer ---------- */
+  .admin-scope .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+  }
+
+  .admin-scope .sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+  /* ---------- Overlay ---------- */
+  .admin-scope .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+  }
+
+  /* ---------- Main layout ---------- */
+  .admin-scope .main-layout {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+
+  .admin-scope .content-area {
+    padding: 16px;
+  }
+
+  /* ---------- Topbar ---------- */
+  .admin-scope .topbar {
+    left: 0 !important;
+    width: 100%;
+  }
+
+  /* ---------- Filters stack ---------- */
+  .admin-scope .ae-filters-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-scope .ae-filter-select {
+    width: 100%;
+  }
+
+  /* ---------- Stats cards ---------- */
+  .admin-scope .ae-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ---------- Table mobile handling ---------- */
+  .admin-scope .ae-table {
+    font-size: 13px;
+  }
+
+  .admin-scope .ae-table thead {
+    display: none;
+  }
+
+  .admin-scope .ae-table tr {
+    display: block;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 14px;
+  }
+
+  .admin-scope .ae-table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    border: none;
+  }
+
+  .admin-scope .ae-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #64748b;
+  }
+
+}
+
+/* =====================================================
+   DESKTOP – EXACTLY SAME AS BEFORE
+===================================================== */
+@media (min-width: 1025px) {
+
+  .admin-scope .sidebar {
+    transform: translateX(0) !important;
+    position: fixed;
+  }
+
+  .admin-scope .main-layout {
+    margin-left: 260px;
+  }
+
+  .admin-scope .overlay {
+    display: none;
+  }
+}
+/* =====================================================
+   🔒 DESKTOP SIDEBAR FORCE FIX
+   (Overrides all mobile styles)
+===================================================== */
+
+@media (min-width: 1025px) {
+
+  /* Sidebar fully visible */
+  .admin-scope .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 260px !important;
+    height: 100vh;
+    transform: translateX(0) !important;
+    display: block !important;
+    z-index: 100;
+  }
+
+  /* Main content pushed right */
+  .admin-scope .main-layout {
+    margin-left: 260px !important;
+    width: calc(100% - 260px);
+  }
+
+  /* Topbar aligned correctly */
+  .admin-scope .topbar {
+    left: 260px !important;
+    width: calc(100% - 260px);
+  }
+
+  /* Overlay NEVER visible on desktop */
+  .admin-scope .overlay {
+    display: none !important;
+  }
+
+  /* Hamburger hidden on desktop */
+  .admin-scope .menu-btn {
+    display: none !important;
+  }
+}
+/* =====================================================
+   🔒 DESKTOP SIDEBAR FORCE FIX
+   (Overrides all mobile styles)
+===================================================== */
+
+@media (min-width: 1025px) {
+
+  /* Sidebar fully visible */
+  .admin-scope .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 260px !important;
+    height: 100vh;
+    transform: translateX(0) !important;
+    display: block !important;
+    z-index: 100;
+  }
+
+  /* Main content pushed right */
+  .admin-scope .main-layout {
+    margin-left: 260px !important;
+    width: calc(100% - 260px);
+  }
+
+  /* Topbar aligned correctly */
+  .admin-scope .topbar {
+    left: 260px !important;
+    width: calc(100% - 260px);
+  }
+
+  /* Overlay NEVER visible on desktop */
+  .admin-scope .overlay {
+    display: none !important;
+  }
+
+  /* Hamburger hidden on desktop */
+  .admin-scope .menu-btn {
+    display: none !important;
+  }
+}
+/* =====================================================
+   USER MANAGEMENT – CLEAN MOBILE CARD VIEW
+   DESKTOP UNCHANGED
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .admin-scope .user-management-page table thead {
+    display: none;
+  }
+
+  .admin-scope .user-management-page table,
+  .admin-scope .user-management-page tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .admin-scope .user-management-page table tr {
+    display: block;
+    background: #ffffff;
+    margin-bottom: 14px;
+    padding: 14px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  }
+
+  .admin-scope .user-management-page table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+  }
+
+  .admin-scope .user-management-page table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #64748b;
+  }
+
+ .admin-scope .user-management-page table td[data-label="Actions"] {
+    justify-content: center;
+    gap: 18px;
+    margin-top: 10px;
+  }
+}
+/* =====================================================
+   USER MANAGEMENT – MOBILE HEADER FIX
+   Desktop unchanged
+===================================================== */
+
+@media (max-width: 768px) {
+
+  /* Page header stack properly */
+  .admin-scope .user-management-page .page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* Title on top */
+  .admin-scope .user-management-page .page-header h1 {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  /* Search + Invite in one row */
+  .admin-scope .user-management-page .page-actions {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+
+  /* Search input */
+  .admin-scope .user-management-page .page-actions input {
+    flex: 1;
+    width: 100%;
+  }
+
+  /* Invite button */
+  .admin-scope .user-management-page .page-actions button {
+    white-space: nowrap;
+  }
+}
+/* =====================================================
+   MOBILE VIEW – ADMIN PAGES (NO DESKTOP CHANGE)
+===================================================== */
+@media (max-width: 768px) {
+
+  /* ---------- PAGE TITLE ---------- */
+  .admin-scope .ae-title,
+  .admin-scope .page-header h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  /* ---------- SEARCH + FILTERS ---------- */
+  .admin-scope .ae-header-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-scope .ae-filters-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .admin-scope .ae-filter-select,
+  .admin-scope .page-actions input,
+  .admin-scope .page-actions button {
+    width: 100%;
+    height: 44px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  /* ---------- STATUS CARDS ---------- */
+  .admin-scope .ae-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .admin-scope .ae-card {
+    padding: 14px;
+    text-align: center;
+    border-radius: 14px;
+  }
+
+  .admin-scope .ae-card .label {
+    font-size: 12px;
+  }
+
+  .admin-scope .ae-card .value {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  /* ---------- TABLE → CARD LAYOUT ---------- */
+  .admin-scope .ae-table thead {
+    display: none;
+  }
+
+  .admin-scope .ae-table tr {
+    display: block;
+    background: #ffffff;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .admin-scope .ae-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 14px;
+    border: none;
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  .admin-scope .ae-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #64748b;
+    flex-shrink: 0;
+  }
+
+  /* ---------- DESCRIPTION + READ MORE ---------- */
+  .admin-scope .desc-text {
+    font-size: 13px;
+    line-height: 1.5;
+    max-height: 80px;
+    overflow: hidden;
+  }
+
+  .admin-scope .read-more {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
+    cursor: pointer;
+  }
+
+  /* ---------- ACTION BUTTONS ---------- */
+  .admin-scope .ae-actions-row {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  /* ---------- FEES ---------- */
+  .admin-scope .fee-item {
+    font-size: 13px;
+  }
+
+  /* ---------- STATUS PILL ---------- */
+  .admin-scope .ae-pill {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* =====================================================
+   DESKTOP – FORCE KEEP ORIGINAL UI
+===================================================== */
+@media (min-width: 769px) {
+
+  .admin-scope .desc-text {
+    max-height: 60px;
+    overflow: hidden;
+  }
+
+  .admin-scope .read-more {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563eb;
+    cursor: pointer;
+  }
+}
+/* ================= READ MORE / LESS ================= */
+
+/* default short text */
+.admin-scope .desc-text {
+  font-size: 13px;
+  line-height: 1.5;
+  max-height: 80px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* expanded text */
+.admin-scope .desc-text.expanded {
+  max-height: 1000px; /* enough for full content */
+}
+
+/* read more / less button */
+.admin-scope .read-more {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+/* Desktop – keep same but allow read more */
+@media (min-width: 769px) {
+  .admin-scope .desc-text {
+    max-height: 60px;
+  }
+}
+/* =====================================================
+   MOBILE EVENT CARD ALIGNMENT (ONLY MOBILE)
+   DESKTOP WILL NOT CHANGE
+===================================================== */
+@media (max-width: 768px) {
+
+  /* table hide for mobile */
+  .admin-scope .ae-table thead {
+    display: none;
+  }
+
+  .admin-scope .ae-table,
+  .admin-scope .ae-table tbody,
+  .admin-scope .ae-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .admin-scope .ae-table tr {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  }
+
+  .admin-scope .ae-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+  }
+
+  /* left label */
+  .admin-scope .ae-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #64748b;
+    flex: 0 0 38%;
+  }
+
+  /* right value */
+  .admin-scope .ae-table td > * {
+    text-align: right;
+    flex: 1;
+  }
+
+  /* Event title */
+  .admin-scope .ae-event-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* Category badge */
+  .admin-scope .ae-category {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2563eb;
+  }
+
+  /* Description read more */
+  .admin-scope .desc-text {
+    max-height: 70px;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+
+  .admin-scope .desc-text.expanded {
+    max-height: 1000px;
+  }
+
+  .admin-scope .read-more {
+    font-size: 13px;
+    color: #2563eb;
+    cursor: pointer;
+    margin-top: 4px;
+    display: inline-block;
+  }
+}
+/* =====================================================
+   MOBILE – DESCRIPTION LEFT ALIGN + READ MORE RIGHT
+   DESKTOP UNCHANGED
+===================================================== */
+@media (max-width: 768px) {
+
+  /* Description row */
+  .admin-scope .ae-table td[data-label="Description"] {
+    flex-direction: column;      /* label on top, content below */
+    align-items: flex-start;     /* LEFT align */
+    text-align: left;
+  }
+
+  /* Description text */
+  .admin-scope .desc-text {
+    width: 100%;
+    text-align: left !important;            /* 🔥 FIX: left alignment */
+    line-height: 1.6;
+    word-break: normal;
+    white-space: normal;
+    max-height: 80px;            /* short text */
+    overflow: hidden;
+  }
+
+  /* Expanded description */
+  .admin-scope .desc-text.expanded {
+    max-height: 1000px;
+  }
+
+  /* Read more / less → RIGHT side */
+  .admin-scope .read-more {
+    align-self: flex-end;        /* 🔥 RIGHT aligned */
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
+    cursor: pointer;
+  }
+}
+
+
+/* =====================================================
+   DESKTOP – VENUE & TIME COMBINED (CLEAN)
+===================================================== */
+@media (min-width: 769px) {
+
+  .admin-scope .ae-table td[data-label="Venue & Timing"] {
+    width: 200px;
+  }
+
+  .admin-scope .ae-venue {
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+
+  .admin-scope .ae-time {
+    font-size: 13px;
+    color: #64748b;
+    white-space: nowrap;
+  }
+}
+/* ================= FEES ALIGNMENT ================= */
+
+/* common */
+.admin-scope .fees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-scope .fee-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.admin-scope .fee-type {
+  font-weight: 500;
+  color: #475569;
+}
+
+.admin-scope .fee-price {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-scope .fee-free {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* desktop spacing */
+@media (min-width: 769px) {
+  .admin-scope .fees-list {
+    max-width: 140px;
+  }
+}
+
+/* mobile keeps clean stack */
+@media (max-width: 768px) {
+  .admin-scope .fee-row {
+    justify-content: flex-end;
+  }
+}
+
+/* =====================================================
+   MOBILE ALIGNMENT – EVENT DETAILS & ORGANIZER
+   DESKTOP UNCHANGED
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .admin-scope .m-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 12px;
+  }
+
+  /* Left label */
+  .admin-scope .m-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    min-width: 38%;
+  }
+
+  /* Right content */
+  .admin-scope .m-value {
+    text-align: right;
+    flex: 1;
+  }
+
+  .admin-scope .m-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+  }
+
+  .admin-scope .m-sub {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563eb;
+    margin-top: 2px;
+    word-break: break-word;
+  }
+}
+/* =====================================================
+   MOBILE – VENUE & TIMING ALIGNMENT
+   DESKTOP UNCHANGED
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .admin-scope .m-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .admin-scope .m-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2a60ad;
+    min-width: 40%;
+  }
+
+  .admin-scope .m-value {
+    text-align: right;
+    flex: 1;
+  }
+
+  .admin-scope .m-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .admin-scope .m-sub {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+}
+
+/* =====================================================
+   EVENT CATEGORY – BLUE (MOBILE + DESKTOP)
+===================================================== */
+
+.admin-scope .event-category {
+  color: #2563eb;          /* Blue */
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Mobile – slightly smaller & clean */
+@media (max-width: 768px) {
+  .admin-scope .event-category {
+    font-size: 12px;
+  }
+}
+/* =====================================================
+   USER MANAGEMENT – MOBILE SEARCH & INVITE FIX
+   Desktop UNCHANGED
+===================================================== */
+
+@media (max-width: 768px) {
+
+  /* wrapper (search + invite) */
+  .admin-scope .user-management-page .page-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* Search input */
+  .admin-scope .user-management-page .page-actions input[type="text"],
+  .admin-scope .user-management-page .page-actions .search-input,
+  .admin-scope .user-management-page .page-actions input {
+    width: 100%;
+    height: 46px;
+    border-radius: 12px;
+    font-size: 15px;
+    padding: 0 14px;
+  }
+
+  /* Invite Organizer button */
+  .admin-scope .user-management-page .page-actions button,
+  .admin-scope .user-management-page .invite-btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+/* =====================================================
+   REPORTS PAGE – MOBILE ORDER FIX ONLY
+   Desktop view unchanged
+===================================================== */
+
+@media (max-width: 768px) {
+
+  /* Grid becomes column */
+  .admin-scope .grid-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* Force order */
+  .admin-scope .grid-2 > .chart-card:first-child {
+    order: 1; /* Overall Attendance Status */
+  }
+
+  .admin-scope .grid-2 > .chart-card:last-child {
+    order: 2; /* Registration by Event */
+  }
+}
+
+
+
+
+
+/* -------- MOBILE -------- */
+@media (max-width: 768px) {
+
+  /* Sidebar should not push content */
+  .admin-scope .main-layout {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* One card per row */
+  .admin-scope .cards-grid {
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 12px;
+  }
+
+  /* Card center */
+  .admin-scope .feedback-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* Title center */
+  .admin-scope .page-header h1 {
+    text-align: center;
+  }
+}
+/* =====================================================
+   🔥 FEEDBACK PAGE – FINAL FIX (CLEAN)
+   Mobile + Desktop PERFECT
+===================================================== */
+
+/* ---------- DESKTOP ---------- */
+
+
+  /* content exactly after sidebar */
+  .admin-scope .main-layout,
+  .admin-scope .main-content_a,
+  .admin-scope .right-section {
+    margin-left: 260px !important;
+    width: calc(100% - 260px) !important;
+    padding-left: 16px !important;   /* 🔥 reduce padding */
+    padding-right: 16px !important;
+  }
+
+  /* REMOVE wrapper gap */
+  .admin-scope .content-wrapper {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* FIXED GRID – 3 cards ONLY */
+  .admin-scope .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    margin: 0;
+    padding: 0;   /* 🔥 IMPORTANT */
+  }
+
+  .admin-scope .feedback-card {
+    width: 100%;
+    margin: 0;
+  }
+
+  .admin-scope .page-header h1 {
+    text-align: left;
+  }
+
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+
+  /* sidebar ignored */
+  .admin-scope .main-layout,
+  .admin-scope .main-content_a,
+  .admin-scope .right-section {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* ONE card per row */
+  .admin-scope .cards-grid {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    margin: 0;
+  }
+
+  /* FULL width card (not small) */
+  .admin-scope .feedback-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .admin-scope .page-header h1 {
+    text-align: center;
+  }
+}
+/* ================================
+   📱 MOBILE – FIX TITLE UNDER TOPBAR
+================================ */
+@media (max-width: 768px) {
+
+  /* ensure topbar height */
+  .admin-scope .topbar {
+    height: 64px;
+    z-index: 1000;
+  }
+
+  /* push page content below topbar */
+  .admin-scope .main-content_a,
+  .admin-scope .content-area,
+  .admin-scope .feedback-page {
+    padding-top: 76px !important; /* 🔥 topbar + small gap */
+  }
+
+  /* feedback title visible */
+  .admin-scope .page-header {
+    margin-top: 0 !important;
+  }
+
+  .admin-scope .page-header h1 {
+    margin-top: 0 !important;
+  }
+}
+/* ================= DESKTOP – FINAL SINGLE SOURCE ================= */
+
+/* =====================================================
+   PROFILE PAGE – MOBILE STACK FIX
+   DESKTOP UNCHANGED
+===================================================== */
+@media (max-width: 768px) {
+
+  /* remove left margin from sidebar */
+  .admin-scope .main-layout {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* profile wrapper padding reduce */
+  .admin-scope .profile-page-wrapper {
+    padding: 16px !important;
+  }
+
+  /* input grid becomes single column */
+  .admin-scope .input-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-scope .full-span {
+    grid-column: span 1 !important;
+  }
+
+  /* avatar + buttons stack */
+  .admin-scope .avatar-overlap-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* save button full width */
+  .admin-scope .btn-save-final {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+/* =========================================
+   PROFILE PHOTO – CENTER FIX (MOBILE ONLY)
+========================================= */
+@media (max-width: 768px) {
+
+  /* avatar + buttons wrapper center */
+  .admin-scope .avatar-overlap-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  /* avatar image center */
+  .admin-scope .avatar-main,
+  .admin-scope .avatar-placeholder-main {
+    margin: 0 auto !important;
+  }
+
+  /* buttons below avatar, centered */
+  .admin-scope .btn-flex-row {
+    justify-content: center !important;
+    width: 100%;
+  }
+}
+
+/* ===============================
+   📱 NOTIFICATIONS – MOBILE HEADER
+================================ */
+@media (max-width: 768px) {
+
+  .admin-scope .notif-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* 🔥 center title */
+    gap: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .admin-scope .notif-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .admin-scope .notif-sub {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .admin-scope .notif-actions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;  /* 🔥 buttons center */
+  }
+
+  .admin-scope .notif-actions button {
+    flex: 1;
+    max-width: 160px;
+    height: 42px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+}
+/* ===============================
+   MOBILE GAP FIX (ONLY MOBILE)
+   =============================== */
+@media (max-width: 768px) {
+
+  /* Topbar khali jast gap remove */
+  .admin-scope .topbar {
+    margin-bottom: 6px !important;
+  }
+
+  /* Main content वरचा extra space काढ */
+  .admin-scope .content-area {
+    padding-top: 8px !important;
+  }
+
+  /* Page title (Dashboard Overview, etc.) */
+  .admin-scope .page-header,
+  .admin-scope .page-title,
+  h1 {
+    margin-top: 8px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Some pages use direct <main> spacing */
+  main {
+    padding-top: 6px !important;
+  }
+}
+/* ===============================
+   MOBILE FULL-WIDTH CARDS FIX
+   (Dashboard-like view)
+   =============================== */
+
+@media (max-width: 768px) {
+
+  /* page container */
+  .admin-scope .content-area {
+    padding: 12px !important;
+  }
+
+  /* common page wrapper */
+  .admin-scope .page,
+  .admin-scope .page-card {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* all cards full width */
+  .admin-scope .card,
+  .admin-scope .event-card,
+  .admin-scope .user-card,
+  .admin-scope .stats-card,
+  .admin-scope .chart-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 16px;
+  }
+
+  /* grids → single column */
+  .admin-scope .grid,
+  .admin-scope .grid-2,
+  .admin-scope .grid-3,
+  .admin-scope .stats-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .admin-scope .ae-wrap {
+    padding: 10px !important;
+  }
+
+  /* 🔥 STATS IN ONE LINE */
+  .admin-scope .ae-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .admin-scope .ae-card {
+    width: 100% !important;
+    padding: 10px 6px !important;
+    text-align: center;
+  }
+
+  .admin-scope .ae-card .label {
+    font-size: 11px !important;
+  }
+
+  .admin-scope .ae-card .value {
+    font-size: 16px !important;
+    font-weight: 700;
+  }
+
+  .admin-scope .ae-table,
+  table {
+    width: 100% !important;
+  }
+
+  main.content-area {
+    padding: 8px !important;
+  }
+}
+/* 🔥 ONLY MOBILE: Center Notifications title */
+@media (max-width: 768px) {
+
+  .admin-scope .notif-header {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .admin-scope .notif-header h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* subtitle "All caught up" */
+  .admin-scope .notif-header > div {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* buttons खाली येतील, center */
+  .admin-scope .notif-header > div:last-child {
+    position: static !important;
+    margin-top: 12px;
+    justify-content: center;
+  }
+}
+
+
+/* ================= MOBILE SIDEBAR CLOSE ================= */
+@media (max-width: 768px) {
+
+  .admin-scope .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .admin-scope .sidebar-close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #111;
+  }
+
+}
+.admin-scope .sidebar-close-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .admin-scope .sidebar-close-btn {
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+  }
+}
+
+/* === FORCE digiEvent LOGO VISIBILITY === */
+.admin-scope .sidebar-logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 16px !important;
+  min-height: 56px;
+}
+
+.admin-scope .logo-text {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;   /* black text */
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  white-space: nowrap;
+  z-index: 10;
+}
+@media (max-width: 768px) {
+  .admin-scope .logo-text {
+    color: #ffffff !important;
+  }
+}
+/* ===== EXACT digiEvent LOGO STYLE (LIKE SCREENSHOT) ===== */
+
+.admin-scope .sidebar-logo {
+  padding: 18px 16px;
+}
+
+/* Blue rounded logo box */
+.admin-scope .logo-text {
+  display: inline-block;
+  background: #1e63b5;        /* 🔵 exact blue look */
+  color: #ffffff;             /* white text */
+  padding: 10px 18px;
+  border-radius: 10px;        /* rounded like screenshot */
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+@media (max-width: 768px) {
+  .admin-scope .logo-text {
+    background: #1e63b5;
+    color: #ffffff;
+  }
+}
+/* ===== TOPBAR PURE WHITE ===== */
+
+.admin-scope .topbar {
+  background: #ffffff !important;   /* full white */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08); /* light shadow (optional but clean) */
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* =====================================================
+   FEEDBACK PAGE – DESKTOP ALIGNMENT FIX
+   Makes it EXACTLY like Users page
+   Mobile & other pages untouched
+===================================================== */
+
+@media (min-width: 1025px) {
+
+  /* Remove centering & max-width ONLY for feedback */
+  .admin-scope .feedback-page {
+    max-width: 0!important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure feedback grid starts right after sidebar */
+  .admin-scope .feedback-page .cards-grid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* EXACT like screenshot 2 */
+    gap: 18px;
+  }
+
+  /* Cards behave like Users page cards */
+  .admin-scope .feedback-page .feedback-card {
+    width: 100%;
+    margin: 0;
+  }
+}
+/* ===============================
+   🔥 FINAL FEEDBACK DESKTOP FIX
+   NO GAP • NO HORIZONTAL SCROLL
+   Dashboard-like layout
+================================ */
+@media (min-width: 1025px) {
+
+  /* HARD STOP horizontal scroll */
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  /* ONLY feedback main area */
+  .admin-scope .feedback-main {
+    margin-left: 260px !important;
+    width: calc(100vw - 260px) !important;
+    max-width: calc(100vw - 260px) !important;
+    padding: 92px 0 40px !important;
+    box-sizing: border-box;
+  }
+
+  /* Center content exactly like dashboard */
+  .admin-scope .feedback-page {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 16px !important;
+    box-sizing: border-box;
+  }
+
+  /* Grid strictly inside container */
+  .admin-scope .feedback-page .cards-grid {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Safety: cards never overflow */
+  .admin-scope .feedback-page .feedback-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* =========================================
+   🔥 FINAL FEEDBACK FIX – REMOVE DOUBLE GAP
+   Desktop only | Mobile untouched
+========================================= */
+@media (min-width: 1025px) {
+
+  /* 🚨 THIS IS THE REAL FIX */
+  .admin-scope .feedback-main {
+    margin-left: 0 !important;   /* ⬅️ second 260px REMOVED */
+    width: 100% !important;
+  }
+
+}
+/* ================= FEEDBACK CARD – CLEAN & SAME EVERYWHERE ================= */
+
+.admin-scope .feedback-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* NAME */
+.admin-scope .fb-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* STARS */
+.admin-scope .fb-stars {
+  font-size: 18px;
+  color: #facc15;
+  line-height: 1;
+}
+
+.admin-scope .fb-stars-muted {
+  color: #d1d5db;
+  margin-left: 6px;
+}
+
+/* EVENT + DATE ROW */
+.admin-scope .fb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.admin-scope .fb-event {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.admin-scope .fb-date {
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* TEXT */
+.admin-scope .fb-text {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+/* ================= FEEDBACK GRID FIX ================= */
+
+/* DESKTOP */
+@media (min-width: 769px) {
+  .admin-scope .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    width: 100%;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .admin-scope .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+.admin-scope .fb-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-scope .fb-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+/* ================================
+   ADMIN MASTER LAYOUT FIX
+================================ */
+
+.admin-scope.app-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: #f6f8fb;
+}
+
+/* Main content wrapper */
+.admin-scope .main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 260px;     /* space for sidebar desktop */
+  transition: all 0.3s ease;
+}
+
+/* When sidebar is collapsed */
+.admin-scope .main-layout.collapsed {
+  margin-left: 80px;
+}
+
+/* Topbar height compensation */
+.admin-scope .content-area {
+  padding: 20px;
+  padding-top: 90px;       /* IMPORTANT → keeps content below topbar */
+  box-sizing: border-box;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .admin-scope .main-layout {
+    margin-left: 0 !important;
+  }
+
+  .admin-scope .content-area {
+    padding-top: 80px;     /* top spacing for mobile */
+  }
+}
+
+/* ==========================================================
+   ✔ FINAL FIX — ADMIN LAYOUT (DESKTOP + MOBILE)
+   ----------------------------------------------------------
+   This version is fully compatible with your Sidebar system.
+   It will NOT break sliding, collapsing, or overlay.
+   ========================================================== */
+
+/* Ensure topbar stays fixed */
+.admin-scope .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #ffffff;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* Main wrapper */
+.admin-scope .main-layout {
+  margin-left: 260px; /* Default desktop sidebar width */
+  padding-top: 70px !important; /* Push content below fixed topbar */
+  transition: margin-left 0.3s ease;
+}
+
+/* Content area spacing */
+.admin-scope .content-area {
+  padding: 24px;
+  padding-top: 10px !important; /* Only small inside padding */
+}
+
+/* ----------------------------------------------------------
+   MOBILE FIX
+---------------------------------------------------------- */
+@media (max-width: 768px) {
+  
+  /* Sidebar should overlay, not push content */
+  .admin-scope .main-layout {
+    margin-left: 0 !important; /* No shifting in mobile */
+    padding-top: 70px !important; /* Still below topbar */
+  }
+
+  /* Sidebar slide-in rules */
+  .admin-scope .sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    background: #fff;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  /* When mobileOpen = true */
+  .admin-scope .sidebar.open {
+    left: 0;
+  }
+
+  /* Dark overlay on mobile */
+  .admin-scope .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 999;
+  }
+}
+
+/* =======================================================
+   MOBILE SIDEBAR — FINAL FIX (WORKS FOR ALL ADMIN PAGES)
+======================================================= */
+@media (max-width: 768px) {
+
+  .admin-scope .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: -260px !important;
+    width: 260px !important;
+    height: 100vh;
+    background: #fff;
+    z-index: 9999;
+    transition: left 0.3s ease !important;
+  }
+
+  .admin-scope .sidebar.open {
+    left: 0 !important;
+  }
+
+  .admin-scope .main-layout {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-scope .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 9998;
+  }
+}
+
+/* ==================================================
+   ⭐ PROFESSIONAL TOP SPACING FIX (NO OVERLAP)
+   Keeps perfect spacing under topbar for all pages
+================================================== */
+
+.admin-scope .main-layout {
+  padding-top: 70px !important;   /* Topbar height */
+}
+
+.admin-scope .content-area,
+.admin-scope .main-content_a,
+.admin-scope .feedback-main {
+  padding-top: 20px !important;   /* Clean spacing */
+}
+
+/* Remove extra margins accidentally added by multiple CSS blocks */
+.admin-scope .page,
+.admin-scope .feedback-page,
+.admin-scope .user-management-page {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ================================
+   📱 MOBILE SIDEBAR CLOSE BUTTON (Professional)
+================================ */
+
+.admin-scope .sidebar-close-btn {
+  display: none; /* default hidden for desktop */
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+
+  .admin-scope .sidebar-close-btn {
+    display: flex !important;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    outline: none;
+
+    background: rgba(0, 0, 0, 0.06); 
+    border-radius: 50%;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    transition: background 0.15s ease;
+  }
+
+  .admin-scope .sidebar-close-btn:hover {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}

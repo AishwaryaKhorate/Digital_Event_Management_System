@@ -1,0 +1,201 @@
+:root{
+    --nav-blue: #0a73c8;
+    --logo-blue: #0968b5;
+    --accent: #0b73d1;
+    --white: #ffffff;
+    --muted: #6b7280;
+    --light-bg: #f5f7fb;
+    --border: #e6ebf2;
+    --text: #0f1724;
+    --radius: 12px;
+    --max-width: 1120px;
+    --header-h: 72px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.05);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:var(--text);background:var(--light-bg);line-height:1.6}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 16px}
+h1,h2,h3,h4{line-height:1.1;margin:0}
+p{margin:0}
+a{text-decoration:none;color:inherit}
+.accent{color:var(--accent)}
+
+/* Make header fixed and ensure content starts below it */
+.navbar{
+    background:var(--nav-blue);
+    color:#fff;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:200;
+    box-shadow:var(--shadow-lg);
+}
+
+/* Ensure the rest of the page starts below the fixed header */
+.app-root > main,
+body > main {
+    padding-top: calc(var(--header-h) + 5px) !important; /* Increased gap by 50px */
+}
+
+/* Base Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:10px 18px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .15s, box-shadow .15s, opacity .15s;border:none}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--nav-blue));color:#fff}
+
+/* CTA tweaks: white button shows nav-blue text and clean border on header */
+.btn-primary-light{
+    background:#fff;
+    color:var(--nav-blue);
+    border:1px solid rgba(255,255,255,0.0);
+    padding:9px 17px;
+    border-radius:8px;
+    font-weight:700;
+}
+.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.6);padding:9px 17px}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:var(--white);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+
+/* Navbar inner layout adjustments */
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);padding:0 16px}
+.nav-left{display:flex;align-items:center;gap:24px}
+.logo-block{background:var(--logo-blue);padding:10px 18px;border-radius:8px;display:flex;align-items:center}
+.logo-text{font-weight:800;color:#fff;font-size:1.1rem}
+
+/* center nav stretches so links are centered between logo and CTA */
+.nav-center{flex:1;display:flex;gap:24px;align-items:center;justify-content:center}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:#fff;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;transition:background-color .2s}
+.nav-links a.active{box-shadow:inset 0 -3px 0 rgba(255,255,255,0.2)}
+.nav-links a:hover{background-color:rgba(255,255,255,0.1)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.cta-desktop{display:flex;gap:10px}
+.mobile-toggle{display:none;background:none;border:0;color:#fff;padding:8px;border-radius:8px;cursor:pointer}
+.mobile-toggle svg{display:block}
+
+/* Mobile overlay */
+.mobile-menu-outer{position:fixed;inset:0;background:rgba(4,20,46,0.6);backdrop-filter:blur(4px);z-index:120;display:flex;align-items:center;justify-content:center;padding:12px 10px}
+.mobile-menu{margin-top:0;width:100%;max-width:320px;background:var(--white);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-lg);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center}
+.mobile-links{display:flex;flex-direction:column;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--border);width:100%}
+.mobile-link-btn{color:var(--text);text-decoration:none;padding:12px 10px;border-radius:8px;font-weight:600;transition:background-color .2s,box-shadow .2s;text-align:center;border:1px solid var(--border)}
+.mobile-link-btn:hover,.mobile-link-btn.active{background-color:var(--light-bg);border-color:var(--accent);box-shadow:var(--shadow-sm)}
+.mobile-cta-stack{display:flex;flex-direction:column;gap:10px;margin-top:12px;width:100%}
+.mobile-full{display:block;width:100%;text-align:center;padding:12px 14px}
+
+/* About Section */
+.about-section{padding:40px 16px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-top:0;border:1px solid var(--border)}
+.main-heading{font-size:2.5rem;font-weight:800;margin-bottom:30px;border-bottom:2px solid var(--border);padding-bottom:15px;padding-top:10px}
+.about-content p{font-size:1.1rem;color:var(--muted);margin-bottom:20px;text-align:justify}
+.about-content p:last-child{margin-bottom:0}
+.about-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.about-content li {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 60px;
+}
+
+/* Contact Section */
+.contact-section{padding:40px 18px}
+.sub-heading{font-size:2rem;font-weight:800;margin-bottom:24px;margin-top:24px}
+.contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px}
+
+/* Contact form card */
+.contact-form-card{background:var(--white);padding:30px;border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+.form-intro{font-size:1rem;color:var(--muted);margin-bottom:20px}
+.contact-form{display:grid;gap:16px}
+.form-group{display:flex;flex-direction:column}
+.form-group label{font-weight:600;margin-bottom:6px;font-size:0.95rem}
+.form-group input,.form-group textarea{padding:12px;border:1px solid var(--border);border-radius:8px;font-size:1rem;transition:border-color 0.2s,box-shadow 0.2s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(11,115,209,0.2)}
+.message-group textarea{resize:vertical}
+.send-btn{padding:12px 20px;margin-top:8px}
+
+/* --- Message Status Styles (UPDATED FOR OUTLINE EFFECT) --- */
+.status-message{
+    padding:15px;
+    border-radius:10px; /* Slightly larger radius */
+    margin-bottom:15px;
+    font-weight:600;
+    border:2px solid; /* Thicker border for better outline */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08); /* Added shadow for lift */
+}
+
+/* Success Message (Message Sent!) */
+.success-message{
+    background:#E6FFFA; /* Lightest background */
+    color:#06512C; /* Darker green text */
+    border-color:#38A169; /* Stronger border green */
+} 
+
+/* Error Message */
+.error-message{
+    background:#FFF5F5;
+    color:#C53030;
+    border-color:#FC8181;
+}
+
+/* Info Message (Sending...) */
+.info-message{
+    background:#EBF8FF;
+    color:#2B6CB0;
+    border-color:#63B3ED;
+}
+/* -------------------------------------------------------- */
+
+
+/* Contact info card */
+.contact-info-card{padding:30px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--border);align-self:start}
+.contact-info-card h3{font-size:1.2rem;font-weight:700;margin-bottom:15px;color:var(--text)}
+.contact-detail{display:flex;align-items:center;gap:12px;margin-bottom:15px;color:var(--muted)}
+.contact-detail span{font-weight:500}
+.info-icon{color:var(--accent)}
+.follow-heading{margin-top:25px}
+.socials-info{display:flex;gap:15px}
+.socials-info a{color:var(--accent);transition:color 0.2s;padding:8px;border-radius:50%;border:1px solid var(--border);background:var(--light-bg);display:flex}
+.socials-info a:hover{color:var(--nav-blue);border-color:var(--nav-blue)}
+
+/* Footer */
+.footer{background:var(--nav-blue);color:#fff;padding:48px 0;margin-top:48px}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.footer .logo-block{background:none;padding:0;border-radius:0}
+.footer h4{margin-top:0;font-weight:700;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:8px;font-size:1.1rem}
+.footer .logo-text{color:#fff}
+.footer .muted{color:rgba(255,255,255,0.9);font-size:.9rem}
+.link-list{list-style:none;padding:0;margin:0}
+.link-list li{margin-bottom:10px}
+.link-list a{color:rgba(255,255,255,0.9);text-decoration:none;transition:color .2s}
+.link-list a:hover{color:var(--white);text-decoration:underline}
+.socials{display:flex;gap:12px}
+.socials a{color:#fff;text-decoration:none;transition:opacity .2s}
+.socials a:hover{opacity:0.7}
+.socials svg{display:block}
+
+/* Responsive */
+@media (max-width:900px){
+    .nav-links{display:none}
+    .cta-desktop{display:none}
+    .mobile-toggle{display:block}
+    .contact-grid{grid-template-columns:1fr;gap:30px}
+    .about-section,.contact-section{padding:30px 16px;margin-top:20px}
+    .main-heading{font-size:2rem}
+    .sub-heading{font-size:1.75rem}
+    .footer-grid{grid-template-columns:repeat(2,1fr)}
+
+    /* slightly smaller header on smaller screens */
+    :root { --header-h: 64px; }
+    .app-root > main,
+    body > main { padding-top: var(--header-h); }
+    .nav-inner { height: var(--header-h); }
+}
+@media (max-width:600px){
+    .footer-grid{grid-template-columns:1fr}
+}

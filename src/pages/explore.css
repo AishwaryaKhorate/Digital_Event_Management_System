@@ -1,0 +1,490 @@
+/* --- MAIN LAYOUT --- */
+.explore-container {
+    margin-left: 250px;
+    margin-top: 80px;
+    padding: 30px;
+    background: #f4f8ff;
+    min-height: 100vh;
+}
+
+.explore-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* --- FILTER BAR CONTAINER --- */
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    width: 100%;
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+}
+
+.filter-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* --- SEARCH & SELECTS --- */
+.search-wrapper {
+    position: relative;
+    flex: 2;
+    min-width: 200px;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.search-wrapper input:focus {
+    border-color: #1a73e8;
+}
+
+.search-svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.filter-select {
+    flex: 1;
+    min-width: 140px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    color: #475569;
+}
+
+.filter-select:hover {
+    background: #f1f5f9;
+}
+
+/* --- PROFESSIONAL CENTERED TABS --- */
+.tabs-main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.status-tabs-nav {
+    display: flex;
+    background-color: #f1f3f5;
+    padding: 6px;
+    border-radius: 14px;
+    gap: 8px;
+    width: 100%;
+    max-width: 450px; 
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nav-tab-btn {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    color: #5f6368;
+}
+
+.nav-tab-btn:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #1a73e8;
+}
+
+.nav-tab-btn.active {
+    background-color: #1a73e8;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.tab-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.nav-tab-btn.active .tab-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* --- EVENT GRID & CARDS --- */
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding-bottom: 20px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensures all cards in a row are same height */
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-img-container {
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+}
+
+.event-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-content {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1e293b;
+}
+
+/* --- CARD FOOTER & STATUS --- */
+.event-card-footer {
+    margin-top: auto;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    min-height: 60px;
+}
+
+.event-btn {
+    width: 100%;
+    padding: 10px;
+    background: #1a73e8;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.event-btn:hover {
+    background: #0f5edb;
+}
+
+.completed-status-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5f6368;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background-color: #f1f3f4;
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+    text-transform: uppercase;
+}
+
+.check-icon {
+    color: #1e8e3e;
+}
+
+/* --- MODES & STATES --- */
+.past-mode {
+    filter: grayscale(0.5);
+    opacity: 0.85;
+}
+
+.no-events-placeholder {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* Seat status indicators */
+.seat-status-indicator {
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-full {
+    color: #ef4444;
+    background: #fef2f2;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #fee2e2;
+}
+
+.status-available {
+    color: #f59e0b;
+    background: #fffbeb;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #fef3c7;
+}
+
+.status-open {
+    color: #10b981;
+    background: #ecfdf5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #d1fae5;
+}
+
+/* Red Badge on Image */
+.seats-full-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    backdrop-filter: blur(1px);
+    border-radius: 12px 12px 0 0;
+}
+
+.seats-full-badge {
+    background-color: #ef4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-is-full {
+    opacity: 0.9;
+}
+
+.card-is-full .event-img {
+    filter: grayscale(0.4);
+}
+
+.disabled-btn {
+    background-color: #94a3b8 !important;
+    cursor: not-allowed !important;
+}
+.image-lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.9); z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    backdrop-filter: blur(5px); animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+    max-width: 90%; max-height: 90%; position: relative;
+    animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox-content img { max-width: 100%; max-height: 85vh; border-radius: 8px; }
+
+.close-lightbox {
+    position: absolute; top: -50px; right: 0;
+    background: white; border: none; border-radius: 50%;
+    width: 40px; height: 40px; cursor: pointer;
+    color: #1e293b;
+    display: flex; justify-content: center; align-items: center;
+}
+.close-lightbox:hover { background: #f1f5f9; }
+/* Ensure description area doesn't break alignment */
+.event-description-text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Shows only 2 lines by default */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 38px; /* Reserves space for 2 lines to keep cards equal height */
+}
+
+/* Expansion class */
+.event-description-text.expanded {
+    -webkit-line-clamp: unset;
+    display: block;
+}
+
+/* Styling for the toggle button */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+}
+
+/* Important: Force the info rows to stay at the bottom regardless of text expansion */
+.event-info-rows {
+    margin-top: auto; 
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+}
+
+/* Standardize price container height for alignment */
+.multi-price-container {
+    margin-top: 8px;
+    min-height: 70px; 
+    display: flex;
+    align-items: center;
+}
+
+
+/* ============================================================
+    MOBILE RESPONSIVE FIXES FOR EXPLORE PAGE  
+    (Clean & fully non-destructive)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Fix container */
+    .explore-container {
+        margin-left: 0 !important;
+        margin-top: 90px !important;
+        padding: 15px;
+    }
+
+    /* Filters stacked neatly */
+    .filter-row {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .search-wrapper {
+        flex: 100%;
+        min-width: 100%;
+    }
+
+    .filter-select {
+        flex: 1;
+        min-width: 48%;
+    }
+
+    .reset-btn-small {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    /* Tabs clean & centered */
+    .status-tabs-nav {
+        max-width: 100%;
+        border-radius: 10px;
+        padding: 4px;
+    }
+
+    .nav-tab-btn {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    /* Grid → single column */
+    .explore-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px;
+        padding-bottom: 25px;
+    }
+
+    /* Image height smaller for mobile */
+    .event-img-container {
+        height: 150px !important;
+    }
+
+    .event-title {
+        font-size: 16px;
+    }
+
+    .event-content {
+        padding: 12px;
+    }
+
+    /* Footer button */
+    .event-card-footer {
+        padding: 12px;
+    }
+
+    .event-btn {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    /* Lightbox mobile */
+    .close-lightbox {
+        top: -40px;
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Seat indicator text */
+    .seat-status-indicator {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    /* Category tag size */
+    .cat-tag-overlay {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .free-badge-overlay {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+}

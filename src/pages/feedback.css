@@ -1,0 +1,238 @@
+/* src/pages/feedback.css */
+
+/* ======================================================= */
+/* MAIN PAGE AREA */
+/* ======================================================= */
+.feedback-page {
+margin-left: 250px;
+margin-top: 90px;
+padding: 30px;
+min-height: 100vh;
+ background: linear-gradient(to bottom right, #e8f0ff, #d6e7ff);
+}
+
+/* PAGE TITLE */
+.feedback-title {
+ font-size: 26px; /* Slightly larger title */
+font-weight: 700; /* Bold title */
+ margin-bottom: 30px;
+  text-align: center; /* Center the title over the box */
+}
+
+/* FEEDBACK BOX */
+.feedback-box {
+ width: 100%; /* Make it responsive */
+  max-width: 450px; /* Set a maximum width */
+ background: white;
+ padding: 30px; /* Increased padding */
+ border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Stronger shadow */
+ margin: 0 auto; /* Center the box */
+}
+
+/* ======================================================= */
+/* FORM ELEMENTS */
+/* ======================================================= */
+
+/* LABEL */
+.label-title {
+ font-weight: 600;
+ margin-top: 20px; /* Increased top margin for separation */
+ margin-bottom: 5px; /* Added small bottom margin */
+ display: block;
+  color: #333; /* Darker text */
+}
+
+/* ⭐️ NEW: EVENT TITLE INPUT STYLING ⭐️ */
+.feedback-box .event-input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Crucial for padding/border inside width */
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.feedback-box .event-input:focus {
+    border-color: #1a73e8;
+}
+
+
+/* TEXTAREA */
+.feedback-input {
+ width: 100%;
+ height: 120px;
+ margin-top: 6px;
+ border-radius: 8px;
+ border: 1px solid #ccc;
+ padding: 12px;
+ outline: none;
+ font-size: 14px;
+ resize: vertical; /* Allow vertical resizing, not horizontal */
+  box-sizing: border-box;
+}
+
+.feedback-input:focus {
+ border-color: #1a73e8;
+}
+
+/* ===================== STAR RATING - IMPROVED ====================== */
+
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 10px 0 22px 0;
+}
+
+.star {
+    cursor: pointer;
+    font-size: 32px;
+    color: #c7c7c7;
+    transition: 
+        transform 0.25s ease,
+        color 0.25s ease,
+        text-shadow 0.25s ease;
+    user-select: none;
+}
+
+/* Hover / active stars */
+.star:hover,
+.star.active {
+    color: #FFD700;
+    transform: scale(1.25);
+    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6);
+}
+
+/* Smooth animation on mobile tap */
+.star:active {
+    transform: scale(1.35);
+}
+
+/* ======================================================= */
+/* BUTTON & MESSAGES */
+/* ======================================================= */
+
+/* SUBMIT BUTTON */
+.submit-btn {
+ width: 100%;
+ margin-top: 25px; /* Increased top margin */
+ padding: 14px; /* Slightly larger button */
+ background: #67aaf9;
+ color: white;
+ border: none;
+ border-radius: 6px;
+ font-size: 16px; /* Slightly larger font */
+ font-weight: 600;
+ cursor: pointer;
+ transition: background 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+background: #4e96f0;
+}
+
+.submit-btn:disabled {
+ background: #a9c5ec; 
+ cursor: not-allowed;
+}
+
+/* SUBMISSION MESSAGE STYLES */
+.submission-message {
+ padding: 10px;
+ margin-top: 15px; /* Removed from the button/input group and moved here */
+border-radius: 6px;
+ font-size: 14px;
+font-weight: 500;
+ text-align: center;
+}
+
+.submission-message.success {
+ background-color: #e6f7e9; 
+ color: #38a169; 
+ border: 1px solid #b7eb8f; /* Adjusted border color for consistency */
+}
+
+.submission-message.error {
+background-color: #ffeaea; 
+color: #e53e3e; 
+ border: 1px solid #f9c2c2; /* Adjusted border color for consistency */
+}
+
+/* ========================= MOBILE VIEW ========================= */
+@media (max-width: 768px) {
+
+  
+    /* PAGE WRAPPER */
+    .feedback-page {
+        margin-left: 0 !important;
+        margin-top: 90px !important; /* below navbar */
+        padding: 20px !important;
+        min-height: auto !important;
+    }
+
+    /* PAGE TITLE */
+    .feedback-title {
+        font-size: 22px !important;
+        margin-bottom: 20px !important;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    /* FEEDBACK BOX */
+    .feedback-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px !important;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    /* LABELS */
+    .label-title {
+        font-size: 14px;
+        margin-top: 15px !important;
+    }
+
+    /* SELECT INPUT */
+    .event-input {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+
+    /* STAR RATING */
+    .stars {
+        font-size: 28px !important;
+        text-align: center;
+        margin-bottom: 15px !important;
+    }
+
+    /* STAR ICONS */
+    .star {
+        margin: 0 4px;
+    }
+
+    /* TEXTAREA */
+    .feedback-input {
+        height: 110px !important;
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+
+    /* SUBMISSION MESSAGE */
+    .submission-message {
+        font-size: 13px !important;
+        padding: 8px !important;
+    }
+
+    /* BUTTON */
+    .submit-btn {
+        font-size: 15px !important;
+        padding: 12px !important;
+        margin-top: 20px !important;
+        border-radius: 8px !important;
+    }
+}

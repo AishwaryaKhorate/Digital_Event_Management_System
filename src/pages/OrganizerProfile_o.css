@@ -1,0 +1,301 @@
+/* --- Added/Modified Styles for Input Fields --- */
+
+.admin-edit-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1; /* Light gray border */
+  background-color: #ffffff;
+  font-size: 15px;
+  color: #334155;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+
+/* Hover state for inputs */
+.admin-edit-input:hover {
+  border-color: #94a3b8;
+}
+
+/* Focus state - this makes it look professional */
+.admin-edit-input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+  background-color: #fff;
+}
+
+/* Specifically for the Email field which is readOnly */
+.disabled-field {
+  background-color: #f1f5f9 !important;
+  color: #64748b;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+/* --- Animation & Effects --- */
+.effect-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.effect-glow {
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.effect-glow:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.effect-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.effect-button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.effect-button:active {
+  transform: scale(0.98);
+}
+
+.effect-hover-lift {
+  transition: all 0.3s ease;
+}
+
+.effect-hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: #6366f1;
+}
+
+/* --- Layout Refinements --- */
+.profile-content-container { 
+    padding: 60px 40px; 
+    background-color: #f8fafc; 
+    min-height: 100vh;
+}
+
+.section-main-title { 
+    font-size: 28px; 
+    font-weight: 700; 
+    color: #0f172a; 
+    margin-top: 26px;
+    margin-bottom: 40px; 
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.profile-admin-card {
+  background: #ffffff; 
+  border-radius: 16px; 
+  padding: 40px;
+  display: flex; 
+  gap: 40px; 
+  max-width: 900px; 
+  margin: 0 auto 40px;
+  border: 1px solid #e2e8f0;
+}
+
+.avatar-admin-side { 
+    width: 220px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    border-right: 1px solid #f1f5f9;
+    padding-right: 40px;
+}
+
+.profile-circle-container {
+  width: 150px; 
+  height: 150px; 
+  border-radius: 50%; 
+  background: #94a3b8;
+  overflow: hidden; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  margin-bottom: 20px;
+  border: 4px solid #f8fafc;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.admin-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+.admin-avatar-placeholder { font-size: 3rem; color: #ffffff; font-weight: 700; }
+
+.btn-upload-new { 
+    background: blue; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    border: none; 
+    width: 100%;
+}
+
+.btn-remove-photo { 
+    background: red; 
+    color: white; 
+    padding: 8px; 
+    font-size: 13px;
+    font-weight: 600; 
+    border: none;
+    margin-top: 5px; 
+    width: 100%; 
+}
+.btn-remove-photo:hover {
+    background-color: #b91c1c;
+}
+
+.btn-save-details { 
+    background: blue; 
+    color: white; 
+    padding: 14px; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    border: none; 
+    width: 100%; 
+    margin-top: 10px;
+}
+
+.btn-save-details.saving {
+    background-color: #10b981;
+}
+
+.fields-admin-side { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+.admin-input-group { display: flex; flex-direction: column; gap: 6px; }
+.admin-input-group label { 
+    font-weight: 600; 
+    font-size: 14px; 
+    color: #475569; 
+    margin-left: 2px;
+}
+
+.dashboard-stats-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+
+.stat-card-modern { 
+    background: white; 
+    padding: 24px; 
+    border-radius: 12px; 
+    border: 1px solid #e2e8f0; 
+    text-align: center; 
+}
+
+.stat-count { font-size: 32px; font-weight: 800; color: #1e293b; display: block; }
+.stat-label { font-size: 14px; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.active-border { border: 2px solid #6366f1; background-color: #f5f3ff; }
+/* Add this to your OrganizerProfile_o.css */
+.avatar-loader {
+  font-weight: bold;
+  color: var(--primary-blue);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+
+/* ===========================================
+   MOBILE PROFILE RESPONSIVE LAYOUT
+   =========================================== */
+@media (max-width: 768px) {
+
+  /* Content padding reduced */
+  .profile-content-container {
+    padding: 20px;
+  }
+
+  /* Section title smaller + left aligned */
+  .section-main-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  /* Convert 2-column layout to 1-column stack */
+  .profile-admin-card {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  /* Avatar section full width, removing right border */
+  .avatar-admin-side {
+    width: 100%;
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 20px;
+  }
+
+  /* Center avatar on mobile */
+  .profile-circle-container {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 16px;
+  }
+
+  /* Buttons full width */
+  .photo-control-group button,
+  .btn-upload-new,
+  .btn-remove-photo,
+  .btn-save-details {
+    width: 100% !important;
+    font-size: 14px;
+  }
+
+  /* Input fields side */
+  .fields-admin-side {
+    width: 100%;
+  }
+
+  /* Cards */
+  .profile-admin-card {
+    margin-bottom: 20px;
+  }
+
+  /* Adjust grids if used later */
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
+/* FULL WIDTH CARD ON MOBILE */
+@media (max-width: 768px) {
+
+  .profile-admin-card {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Remove forced left margin from desktop layout */
+  .main-content-area {
+    margin-left: 0 !important;
+  }
+
+  /* Sidebar will cover content so navbar must stay fixed cleanly */
+  .profile-content-container {
+    padding-top: 100px !important; /* prevent navbar overlap */
+  }
+}

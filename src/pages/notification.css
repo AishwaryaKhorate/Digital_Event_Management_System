@@ -1,0 +1,399 @@
+/* notification.css */
+
+/* 1. Reset Global Scroll Behavior */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: auto !important; 
+    min-height: 100vh !important;
+    overflow-y: auto !important; /* Forces vertical scrollbar capability */
+}
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    /* Ensure the shell itself doesn't trap the scroll */
+    overflow: visible !important; 
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 100vh;
+}
+
+.notify-page {
+    margin-left: 240px; /* Sidebar width */
+    margin-top: 70px;  /* Navbar height */
+    padding: 40px;
+    flex: 1;
+    /* Do NOT use 'height: 100vh' here */
+    min-height: calc(100vh - 70px); 
+    display: flex;
+    flex-direction: column;
+    /* Ensure this specific container allows content to flow down */
+    overflow-y: visible !important; 
+}
+
+/* DESKTOP HEADER */
+.notify-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    background: transparent; /* remove white background */
+    padding: 0;
+    box-shadow: none;
+    position: static;
+}
+
+.notify-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e3a8a;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+
+.btn-header {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-mark-all {
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-mark-all:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-clear-all {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fcc8c8;
+}
+
+.btn-clear-all:hover {
+    background-color: #fef2f2;
+    border-color: #f87171;
+}
+
+/* Notification List */
+.notify-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 60px; /* Space so the last card isn't cut off */
+}
+
+/* Notification Card */
+.notify-card {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.notify-card.unread {
+    border-left: 6px solid #2563eb;
+    background-color: #f0f7ff;
+}
+
+.notify-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-content h4 {
+    margin: 0 0 6px 0;
+    color: #1e3a8a;
+    font-size: 17px;
+}
+
+.card-content p {
+    margin: 0;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+/* Individual Card Controls */
+.card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    min-width: 180px;
+}
+
+.card-time {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-item {
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    background: blue;
+    border: 1px solid #cbd5e1;
+    color: white;
+    transition: 0.2s;
+}
+
+
+.btn-item:hover {
+    background: #1e40af;
+}
+
+.btn-delete:hover {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+
+/* MOBILE SIDEBAR ANIMATION */
+.sidebar {
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 250px;
+        height: 100vh;
+        background: white;
+        z-index: 2000;
+        transition: 0.3s ease;
+        padding-top: 50px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .close-sidebar {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+        background: none;
+        border: none;
+        color: #000;
+    }
+}
+
+.close-sidebar {
+    display: none;
+}
+
+
+/* MOBILE MENU BUTTON */
+.mobile-menu-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2500;
+    background: #ffffff;
+    border: none;
+    font-size: 26px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    display: none;
+}
+
+/* Overlay behind sidebar */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1800;
+    display: none;
+}
+
+/* SHOW mobile button on small screen */
+@media (max-width: 768px) {
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    /* When sidebar is open, show overlay */
+    .sidebar.open + .sidebar-overlay {
+        display: block;
+    }
+
+    /* Adjust dashboard layout for mobile */
+    .home-page {
+        margin-left: 0 !important;
+        margin-top: 70px !important;
+        padding: 20px;
+    }
+}
+
+
+/* FIX MOBILE DASHBOARD LAYOUT */
+@media (max-width: 768px) {
+
+    .home-page {
+        margin-left: 0 !important;
+        margin-top: 100px !important;
+        padding: 15px;
+        width: 100% !important;
+    }
+
+    .navbar {
+        z-index: 3000;
+    }
+
+    .events-grid {
+        padding-left: 10px !important;
+    }
+
+    .section-title {
+        margin-left: 5px !important;
+    }
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: white;
+    border: none;
+    font-size: 26px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+
+
+/* Overlay behind sidebar */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1800;
+    display: none;
+}
+
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+
+/* -------------------- MOBILE VIEW -------------------- */
+@media (max-width: 768px) {
+
+    .notify-page {
+        margin-left: 0 !important;
+        margin-top: 80px !important; /* bring page higher */
+        padding: 20px !important;
+    }
+
+    .notify-header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        margin-top: 0px !important;      /* pull heading UP */
+        margin-bottom: 20px !important;  /* space before buttons */
+        gap: 16px;
+    }
+
+    .notify-header h1 {
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 10px;    /* space AFTER heading */
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 5px !important;  /* space between heading & buttons */
+    }
+}
+
+/* -------------------- MOBILE CARD FIX -------------------- */
+@media (max-width: 768px) {
+
+    .notify-card {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 18px !important;
+        gap: 10px !important;
+    }
+
+    .card-content h4 {
+        font-size: 18px !important;
+    }
+
+    .card-content p {
+        font-size: 14px !important;
+        max-width: 100% !important;
+    }
+
+    .card-right {
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+        min-width: unset !important;
+    }
+
+    .card-time {
+        font-size: 12px !important;
+        color: #64748b;
+    }
+
+    .card-actions {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .btn-item {
+        padding: 8px 12px !important;
+        font-size: 13px !important;
+    }
+}

@@ -1,0 +1,250 @@
+/* --- BASE STYLES (Desktop/Large Screen) --- */
+
+.title-main {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.subtitle-text {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* RATING SUMMARY */
+.rating-summary {
+  display: flex;
+  gap: 30px;
+  padding: 25px;
+  margin-bottom: 35px;
+  /* 💡 Added border-radius for softer look */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* 🌟 FIX 1: Reserve space for the left score column to prevent overlap */
+.rating-left {
+  width: 150px;
+  flex-shrink: 0;
+  text-align: center; /* Center content in the left column */
+}
+
+.rating-number {
+  font-size: 48px;
+  margin: 10px 0;
+  margin-left: 0; /* Removed fixed margin-left for better centering */
+  color: #006dff;
+}
+
+.rating-stars {
+  font-size: 22px;
+  margin: 5px 0;
+}
+
+.rating-total {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Bars */
+.rating-bars {
+  /* 🌟 FIX 2: Lock total width of bar chart area and allow it to shrink on smaller devices */
+  flex-grow: 1; /* Allow it to take up available space */
+  max-width: 800px; /* Use max-width instead of fixed width */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+  font-size: 14px;
+  /* FIX 3: Ensures each row uses the full width of the bar container */
+  width: 100%;
+}
+
+/* 🌟 FIX 4: Fixed width for star label wrapper (targets .star-label) */
+.star-label {
+  width: 50px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+/* 🌟 FIX 5: Fixed width for count label wrapper (targets .count-label) */
+.count-label {
+  width: 40px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* 🌟 FIX 6: Bar container takes flexible space in the middle */
+.bar-container {
+  flex: 1;
+  height: 10px;
+  background: #e6eaff; /* Track color */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* The fill element lives inside the bar-container, which now acts as the track */
+.fill {
+  width: 100%;
+  height: 100%;
+  background: #006dff;
+}
+
+/* FEEDBACK LIST */
+.feedback-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feedback-list {
+  /* Default: 2 columns for large screens */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.feedback-card {
+  display: flex;
+  gap: 15px;
+  padding: 18px;
+  border-radius: 8px; /* Added border-radius */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  /* Ensure image fits and prevents stretching/squishing */
+  object-fit: cover;
+  flex-shrink: 0; /* Prevents image from shrinking in small layouts */
+}
+
+.feedback-content h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stars {
+  color: #f7d000;
+  margin: 4px 0;
+}
+
+.feedback-content p {
+  color: #555;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* --- RESPONSIVENESS (Media Queries) --- */
+
+/* 1. Tablet View (Max-width 1024px) */
+@media (max-width: 1024px) {
+  .page-content {
+    /* Add some padding to the sides on smaller screens */
+    padding: 0 15px;
+  }
+
+  .feedback-list {
+    /* Change to a single column for better readability on tablets */
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2. Mobile View (Max-width 768px) */
+@media (max-width: 768px) {
+  .rating-summary {
+    /* Change to a stacked layout */
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; /* Center the entire card content */
+  }
+
+  .rating-left {
+    /* Reset width to be auto and center the text */
+    width: 100%;
+    text-align: center;
+  }
+
+  .rating-number {
+    /* Increase font size slightly for prominence */
+    font-size: 56px;
+  }
+
+  .rating-total {
+    margin-bottom: 15px;
+  }
+
+  .rating-bars {
+    /* Allow bars to use full width and center them */
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .bar-row {
+    /* Ensure rows take up a reasonable portion of the screen */
+    width: 90%; 
+  }
+  
+  .feedback-card {
+      /* Stack content for very small screens if necessary, though current flex works well */
+      padding: 15px;
+  }
+
+  .profile-pic {
+      width: 40px;
+      height: 40px;
+  }
+}
+
+/* 3. Extra Small Mobile View (Max-width 480px) */
+@media (max-width: 480px) {
+  .title-main {
+    font-size: 20px;
+  }
+
+  .subtitle-text {
+    font-size: 14px;
+  }
+  
+  .rating-summary {
+      padding: 15px;
+  }
+
+  /* Make the font size smaller for the star count labels for cramped space */
+  .star-label, .count-label {
+    font-size: 12px;
+  }
+  
+  .feedback-card {
+      /* Keep the flex layout but reduce gap and padding slightly */
+      gap: 10px;
+      padding: 12px;
+  }
+  
+  .feedback-content h4 {
+      font-size: 15px;
+  }
+  
+  .feedback-content p {
+      font-size: 13px;
+  }
+}
+
+.page-content {
+  /* This is your main content wrapper */
+  margin-top: 0;
+  /* If you see a lot of space here, reduce this */
+}
+
+.page-content > .title-main {
+  /* This targets the first element (the h2) inside the content wrapper */
+  margin-top: 0;
+}

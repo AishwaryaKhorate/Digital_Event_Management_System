@@ -1,0 +1,219 @@
+/* ===================================
+   DESKTOP NAVBAR
+=================================== */
+.navbar_o {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  z-index: 999;
+}
+
+/* Hide mobile logo on desktop */
+.nav-mobile-logo {
+  display: none;
+}
+
+/* Hide hamburger on desktop */
+.nav-toggle {
+  display: none;
+}
+
+/* Right area icons (desktop & mobile) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fee2e2;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #b91c1c;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+.nav-logout-btn:hover {
+  background: #fca5a5;
+  color: white;
+}
+
+.nav-bell {
+  position: relative;
+  font-size: 24px;
+}
+
+.nav-notif-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+}
+
+.navbar-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Hide mobile logo on desktop */
+.nav-mobile-logo {
+  display: none;
+}
+
+/* ===================================
+   MOBILE MODE
+=================================== */
+@media (max-width: 768px) {
+
+  /* navbar full width */
+  .navbar_o {
+    left: 0;
+    width: 100%;
+    padding: 0 12px;
+    justify-content: flex-end !important;
+    height: 70px;
+  }
+
+  /* Mobile logo (top left) */
+  .nav-mobile-logo {
+    display: block !important;
+    position: fixed;
+    top: 10px;
+    left: 12px;
+    z-index: 1300;
+
+    background: #0d6efd;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+  }
+
+  /* Navbar content should shift right (avoid logo overlap) */
+  .navbar_o {
+    padding-left: 120px !important;
+  }
+
+  /* Hamburger below logo */
+  .nav-toggle {
+    display: block !important;
+    position: fixed;
+    top: 60px;
+    left: 12px;
+    z-index: 1300;
+  }
+
+  /* Hamburger icon lines */
+  .hamburger {
+    width: 25px;
+    height: 3px;
+    background: #1e293b;
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    width: 25px;
+    height: 3px;
+    background: #1e293b;
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before { top: -7px; }
+  .hamburger::after { top: 7px; }
+
+  /* Adjust right icons size */
+  .nav-right {
+    gap: 12px;
+  }
+
+  .nav-logout-btn span {
+    display: none;
+  }
+
+  .navbar-profile-img {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Hide desktop logo if exists */
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+
+/* HAMBURGER — always transparent */
+.nav-toggle {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Remove default focus/active highlight */
+.nav-toggle:focus,
+.nav-toggle:active,
+.nav-toggle:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* --------------------------------------
+   FORCE HAMBURGER TOP-LEFT ON MOBILE
+-------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Remove desktop offset */
+  .navbar_o {
+    left: 0 !important;
+    width: 100% !important;
+    justify-content: flex-end;
+  }
+
+  /* Hamburger fixed at top-left */
+  .nav-toggle {
+    display: block !important;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 2000;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Reset the blue background issue */
+  .nav-toggle:active,
+  .nav-toggle:focus {
+    background: white !important;
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    background: #1e293b !important;
+  }
+}
