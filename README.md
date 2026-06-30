@@ -40,6 +40,7 @@ DigiEvent is a full-stack **Event Management System** designed to simplify the o
 
 ### Backend & Database
 
+* Node.js
 * Firebase Authentication
 * Firebase Firestore
 
