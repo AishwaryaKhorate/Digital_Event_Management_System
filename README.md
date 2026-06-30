@@ -1,16 +1,66 @@
-# React + Vite
+# 🎉 Digital Event Management System (DigiEvent)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DigiEvent is a full-stack **Event Management System** designed to simplify the organization and management of college events. It provides a secure and user-friendly platform for **students, organizers, and administrators** to manage the complete event lifecycle digitally—from event creation and registration to attendance tracking and certificate generation.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+* 🔐 User Registration & Login (Firebase Authentication)
+* 👥 Role-Based Access (Student, Organizer & Admin)
+* 📅 Browse and Register for Events
+* 🎓 Student Dashboard
+* 🛠️ Organizer Dashboard
+* 👨‍💼 Admin Dashboard
+* 📝 Event Creation and Management
+* ✅ Event Approval System
+* 🎫 QR Code Generation for Event Registration
+* 📱 QR Code Attendance Verification
+* 💳 Razorpay Payment Integration for Paid Events
+* 🏆 Automated E-Certificate Generation
+* 📧 Certificate Delivery via Gmail
+* 🤖 Chatbot for Student Support & FAQs
+* 🔔 Event Notifications
+* 🖼️ Event Highlights Gallery
+* ⭐ Feedback & Rating System
+* 📱 Responsive User Interface
+* ☁️ Secure Cloud Database using Firebase Firestore
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+
+* React.js
+* Vite
+* HTML5
+* CSS3
+* JavaScript
+
+### Backend & Database
+
+* Firebase Authentication
+* Firebase Firestore
+
+### Integrations & Tools
+
+* Razorpay Payment Gateway
+* Gmail Integration
+* QR Code Generator & Scanner
+* Git & GitHub
+
+---
+
+## 🌐 Live Demo
+
+🚀 **Vercel:** https://digi-event-seven.vercel.app/
+
+---
+
+## 👩‍💻 Author
+
+**Aishwarya Khorate**
+
+* **GitHub:** https://github.com/AishwaryaKhorate
+* **LinkedIn:** https://www.linkedin.com/in/aishwaryakhorate
