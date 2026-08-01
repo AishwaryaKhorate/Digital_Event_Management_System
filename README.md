@@ -53,12 +53,6 @@ DigiEvent is a full-stack **Event Management System** designed to simplify the o
 
 ---
 
-## 🌐 Live Demo
-
-🚀 **Vercel:** https://digi-event-seven.vercel.app/
-
----
-
 ## 👩‍💻 Author
 
 **Aishwarya Khorate**
